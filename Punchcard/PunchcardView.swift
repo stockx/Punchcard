@@ -33,18 +33,49 @@ class PunchcardView: UIView {
     
     init(state: State) {
         super.init(frame: CGRect.zero)
+        initialize()
         self.state = state
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initialize()
+    }
+    
+    private func initialize() {
+        // Will trigger a setNeedsDisplay whenever bounds changes (i.e. orientation change)
+        contentMode = .Redraw
+        
+        setNeedsDisplay()
+        backgroundColor = UIColor.whiteColor()
+    }
+    
+    // MARK: View
+    
+    override func drawRect(rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext(),
+            let lineColor = state.punchNumberColor else {
+                return
+        }
+        
+        CGContextSaveGState(context)
+        
+        let insetRect = CGRectInset(rect, 10, 10)
+        
+        let path = CGPathCreateWithRect(insetRect, nil)
+        CGContextSetLineWidth(context, 1)
+        UIColor.clearColor().setFill()
+        lineColor.setStroke()
+        CGContextAddPath(context, path)
+        CGContextDrawPath(context, .FillStroke)
+        
+        CGContextRestoreGState(context)
     }
     
     // MARK: State
     
     func update(oldState: State) {
-        
+
+        setNeedsDisplay()
     }
-    
-    
 }
