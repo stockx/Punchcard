@@ -14,6 +14,7 @@
 		02D8B1E61DAC304300AB8BFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1E41DAC304300AB8BFF /* LaunchScreen.storyboard */; };
 		02D8B1F11DAC304400AB8BFF /* PunchcardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */; };
 		02D8B1FC1DAC305500AB8BFF /* PunchcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */; };
+		02D8B1FE1DAC347200AB8BFF /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1FD1DAC347200AB8BFF /* PunchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchcardTests.swift; sourceTree = "<group>"; };
 		02D8B1F21DAC304400AB8BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardView.swift; sourceTree = "<group>"; };
+		02D8B1FD1DAC347200AB8BFF /* PunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				02D8B1E41DAC304300AB8BFF /* LaunchScreen.storyboard */,
 				02D8B1E71DAC304300AB8BFF /* Info.plist */,
 				02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */,
+				02D8B1FD1DAC347200AB8BFF /* PunchView.swift */,
 			);
 			path = Punchcard;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */,
 				02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */,
 				02D8B1FC1DAC305500AB8BFF /* PunchcardView.swift in Sources */,
+				02D8B1FE1DAC347200AB8BFF /* PunchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +398,7 @@
 				02D8B1F71DAC304400AB8BFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02D8B1F81DAC304400AB8BFF /* Build configuration list for PBXNativeTarget "PunchcardTests" */ = {
 			isa = XCConfigurationList;
@@ -402,6 +407,7 @@
 				02D8B1FA1DAC304400AB8BFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
