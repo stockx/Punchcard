@@ -50,6 +50,7 @@ class PunchcardView: UIView {
     private var punchesStackView = OAStackView()
     
     private var punchViews = [PunchView]()
+    private var rewardView = RewardView(frame: CGRectZero)
     
     // MARK: Init
     
@@ -112,7 +113,8 @@ class PunchcardView: UIView {
         // and add the new ones.
         if oldState.punchesRequired != state.punchesRequired {
             punchViews.forEach {
-                $0.removeFromSuperview()
+                self.punchesStackView.removeArrangedSubview($0)
+                self.punchesStackView.removeArrangedSubview(self.rewardView)
             }
             
             punchViews.removeAll()
@@ -124,6 +126,8 @@ class PunchcardView: UIView {
             punchViews.forEach {
                 self.punchesStackView.addArrangedSubview($0)
             }
+            
+            punchesStackView.addArrangedSubview(rewardView)
             
         }
         
