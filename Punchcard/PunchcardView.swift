@@ -11,6 +11,7 @@ import UIKit
 class PunchcardView: UIView {
     
     struct State {
+        var backgroundColor: UIColor
         var punchesRequired: Int
         var punchesReceived: Int
         
@@ -23,7 +24,14 @@ class PunchcardView: UIView {
         var punchNumberColor: UIColor?
     }
     
-    var state: State = State(punchesRequired: 0, punchesReceived: 0, emptyPunchImage: nil, filledPunchImage: nil, rewardText: "", punchNumberFont: nil, punchNumberColor: nil) {
+    var state: State = State(backgroundColor: UIColor.whiteColor(),
+                             punchesRequired: 0,
+                             punchesReceived: 0,
+                             emptyPunchImage: nil,
+                             filledPunchImage: nil,
+                             rewardText: "",
+                             punchNumberFont: nil,
+                             punchNumberColor: nil) {
         didSet {
             update(oldValue)
         }
@@ -75,7 +83,7 @@ class PunchcardView: UIView {
     // MARK: State
     
     func update(oldState: State) {
-
+        backgroundColor = state.backgroundColor
         setNeedsDisplay()
     }
 }

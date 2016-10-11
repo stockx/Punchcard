@@ -34,6 +34,7 @@ extension ViewController: UITextFieldDelegate {
         }
         
         var state = punchCardView.state
+        state.backgroundColor = UIColor(patternImage: UIImage(named: "punch_back_pattern")!)
         state.punchesRequired = punchesRequired
         state.punchesReceived = punchesReceived
         state.punchNumberColor = UIColor.lightGrayColor()
