@@ -5,6 +5,7 @@ target 'Punchcard' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   # Pods for Punchcard
+  pod 'SnapKit', '0.22.0'
 
   target 'PunchcardTests' do
     inherit! :search_paths

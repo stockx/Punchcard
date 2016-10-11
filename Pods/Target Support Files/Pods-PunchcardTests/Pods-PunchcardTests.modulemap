@@ -1,0 +1,6 @@
+framework module Pods_PunchcardTests {
+  umbrella header "Pods-PunchcardTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_Punchcard {
+  umbrella header "Pods-Punchcard-umbrella.h"
+
+  export *
+  module * { export * }
+}
