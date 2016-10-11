@@ -10,6 +10,7 @@ import UIKit
 
 // Libs
 import SnapKit
+import OAStackView
 
 class PunchcardView: UIView {
     
@@ -46,6 +47,7 @@ class PunchcardView: UIView {
      border around it.
      */
     private var punchesContentView = UIView()
+    private var punchesStackView = OAStackView()
     
     private var punchViews = [PunchView]()
     
@@ -71,6 +73,13 @@ class PunchcardView: UIView {
             make.edges.equalToSuperview().inset(10)
         }
         
+        punchesStackView.distribution = .FillProportionally
+        punchesStackView.axis = .Horizontal
+        punchesContentView.addSubview(punchesStackView)
+        punchesStackView.snp_makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         layoutIfNeeded()
     }
     
@@ -78,8 +87,8 @@ class PunchcardView: UIView {
     
     override func updateConstraints() {
         guard let emptyPunchImage = state.emptyPunchImage else {
-                super.updateConstraints()
-                return
+            super.updateConstraints()
+            return
         }
         
         // Calculate if the PunchcardView has enough size to accommodate all punchViews.
@@ -88,39 +97,9 @@ class PunchcardView: UIView {
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
         guard punchViewSize.height < punchesContentView.bounds.size.height &&
             punchViewSize.width * CGFloat(state.punchesRequired) < punchesContentView.bounds.size.width     else {
-                print("Punchcard: PunchcardView is either too short or too tall to support the punchViews given the punch image and number of punches.\nNot drawing any punch views.")
+                print("Punchcard: PunchcardView is either too short or too tall to support the punchViews given the punch image and number of punches.\nPunchViews will be cut off.")
                 super.updateConstraints()
                 return
-        }
-        
-        let buffer = (punchesContentView.bounds.size.width - (punchViewSize.width * CGFloat(state.punchesRequired)))/CGFloat(state.punchesRequired + 1)
-        
-        for (index, punchView) in punchViews.enumerate() {
-            // If it's the first one, anchor it to the left side.
-            if index == 0 {
-                punchView.snp_remakeConstraints { make in
-                    make.left.equalToSuperview().offset(buffer)
-                    make.centerY.equalToSuperview()
-                }
-            }
-            
-            // If it's somewhere in the middle or the end, anchor the
-            // left to the previous one.
-            if index > 0 && index <= state.punchesRequired {
-                punchView.snp_remakeConstraints { make in
-                    make.left.equalTo(self.punchViews[index - 1].snp_right).offset(buffer)
-                    make.centerY.equalToSuperview()
-                }
-            }
-            
-            // If it's the last one, add (snp_make, not snp_remake since we
-            // don't want to blow away the ones we just created) an
-            // anchor to the right side.
-            if index == state.punchesRequired - 1 {
-                punchView.snp_makeConstraints { make in
-                    make.right.equalToSuperview().inset(buffer)
-                }
-            }
         }
         
         super.updateConstraints()
@@ -143,7 +122,7 @@ class PunchcardView: UIView {
             }
             
             punchViews.forEach {
-                self.punchesContentView.addSubview($0)
+                self.punchesStackView.addArrangedSubview($0)
             }
             
         }
