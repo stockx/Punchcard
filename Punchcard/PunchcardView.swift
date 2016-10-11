@@ -144,6 +144,15 @@ class PunchcardView: UIView {
             punchView.state = punchViewState
         }
         
+        // Update the rewardView's state.
+        var rewardViewState = rewardView.state
+        rewardViewState.achieved = state.punchesReceived == state.punchesRequired
+        rewardViewState.unachievedColor = state.punchNumberColor
+        rewardViewState.achievedBackgroundColor = UIColor.greenColor() // TODO: Add this to the state
+        rewardViewState.achievedTextColor = UIColor.whiteColor() // TODO: Add this to the state
+        rewardViewState.text = state.rewardText
+        rewardView.state = rewardViewState
+        
         backgroundColor = state.backgroundColor
         punchesContentView.layer.borderColor = state.punchNumberColor.CGColor
         
