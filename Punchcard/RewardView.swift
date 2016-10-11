@@ -19,6 +19,31 @@ import SnapKit
  */
 class RewardView: UIView {
     
+    struct State {
+        var achieved: Bool
+        
+        var unachievedColor: UIColor
+        var achievedBackgroundColor: UIColor // Will be clear when the reward is unachieved
+        var achievedTextColor: UIColor
+        
+        var text: String
+    }
+    
+    var state: State = State(achieved: false,
+                             unachievedColor: UIColor.lightGrayColor(),
+                             achievedBackgroundColor: UIColor.greenColor(),
+                             achievedTextColor: UIColor.whiteColor(),
+                             text: "") {
+        didSet {
+            update()
+        }
+    }
+    
+    /**
+     How much spacing there is on both sides of the label for the circular border.
+     */
+    let borderBuffer: CGFloat = 5
+    
     private var label = UILabel()
     
     /// Used to draw the circular border around the `label`.
@@ -70,7 +95,14 @@ class RewardView: UIView {
     // MARK: State
     
     func update() {
-        circularBorderView.layer.borderColor = UIColor.blackColor().CGColor
-        circularBorderView.layer.borderWidth = 1
+        circularBorderView.layer.borderColor = state.unachievedColor.CGColor
+
+        label.text = state.text
+        label.textColor = state.achieved ? state.achievedTextColor : state.unachievedColor
+        circularBorderView.backgroundColor = state.achieved ? state.achievedBackgroundColor : UIColor.clearColor()
+        
+        circularBorderView.backgroundColor = UIColor.greenColor()
+        backgroundColor = UIColor.redColor()
+        label.backgroundColor = UIColor.blueColor()
     }
 }
