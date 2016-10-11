@@ -73,7 +73,7 @@ class PunchView: UIView {
     func update() {
         emptyPunchImageView.image = state.emptyPunchImage
         filledPunchImageView.image = state.filledPunchImage
-        filledPunchImageView.highlighted = !state.isFilled
+        filledPunchImageView.hidden = !state.isFilled
         punchNumberLabel.text = "\(state.punchNumber)"
     }
 }
