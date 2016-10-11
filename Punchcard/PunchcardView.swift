@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Libs
+import SnapKit
+
 class PunchcardView: UIView {
     
     struct State {
@@ -37,6 +40,13 @@ class PunchcardView: UIView {
         }
     }
     
+    /**
+     The content view area for the punches.
+     Slightly inset from the edges of the `PunchcardView`, and has a
+     border around it.
+     */
+    private var punchesContentView = UIView()
+    
     // MARK: Init
     
     init(state: State) {
@@ -51,39 +61,25 @@ class PunchcardView: UIView {
     }
     
     private func initialize() {
-        // Will trigger a setNeedsDisplay whenever bounds changes (i.e. orientation change)
-        contentMode = .Redraw
-        
-        setNeedsDisplay()
-        backgroundColor = UIColor.whiteColor()
+        punchesContentView.backgroundColor = UIColor.clearColor()
+        punchesContentView.layer.borderWidth = 1.0
+        addSubview(punchesContentView)
     }
     
     // MARK: View
     
-    override func drawRect(rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext(),
-            let lineColor = state.punchNumberColor else {
-                return
+    override func updateConstraints() {
+        punchesContentView.snp_remakeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
         }
         
-        CGContextSaveGState(context)
-        
-        let insetRect = CGRectInset(rect, 10, 10)
-        
-        let path = CGPathCreateWithRect(insetRect, nil)
-        CGContextSetLineWidth(context, 1)
-        UIColor.clearColor().setFill()
-        lineColor.setStroke()
-        CGContextAddPath(context, path)
-        CGContextDrawPath(context, .FillStroke)
-        
-        CGContextRestoreGState(context)
+        super.updateConstraints()
     }
     
     // MARK: State
     
     func update(oldState: State) {
         backgroundColor = state.backgroundColor
-        setNeedsDisplay()
+        punchesContentView.layer.borderColor = state.punchNumberColor?.CGColor
     }
 }
