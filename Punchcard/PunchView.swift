@@ -73,6 +73,14 @@ class PunchView: UIView {
         contentView.snp_makeConstraints { make in
             make.center.equalToSuperview()
         }
+
+        // Apply a transom translation and rotation to the filledPunchImageView
+        let randomRotationValue = randomBetweenNumbers(0, secondNum: 0.1) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
+        let rotationTransform = CGAffineTransformMakeRotation(randomRotationValue)
+        let randomTranslationDX = randomBetweenNumbers(1.5, secondNum: 2.5) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
+        let randomTranslationDY = randomBetweenNumbers(1.5, secondNum: 2.5) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
+        let translationTransform = CGAffineTransformMakeTranslation(randomTranslationDX, randomTranslationDY)
+        filledPunchImageView.transform = CGAffineTransformConcat(rotationTransform, translationTransform)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,5 +94,11 @@ class PunchView: UIView {
         filledPunchImageView.image = state.filledPunchImage
         filledPunchImageView.hidden = !state.isFilled
         punchNumberLabel.text = "\(state.punchNumber)"
+    }
+    
+    // MARK: Helper
+    
+    private func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
+        return CGFloat(arc4random_uniform(1000)) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
 }
