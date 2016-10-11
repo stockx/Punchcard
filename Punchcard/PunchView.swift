@@ -17,6 +17,8 @@ class PunchView: UIView {
         var emptyPunchImage: UIImage?
         var filledPunchImage: UIImage?
         
+        var punchNumber: Int
+        
         var isFilled: Bool
         
         var punchNumberFont: UIFont?
@@ -27,7 +29,7 @@ class PunchView: UIView {
     private let filledPunchImageView = UIImageView()
     private let punchNumberLabel = UILabel()
     
-    var state: State = State(emptyPunchImage: nil, filledPunchImage: nil, isFilled: false, punchNumberFont: nil, punchNumberColor: nil) {
+    var state: State = State(emptyPunchImage: nil, filledPunchImage: nil, punchNumber: 0, isFilled: false, punchNumberFont: nil, punchNumberColor: nil) {
         didSet {
             update()
         }
@@ -72,6 +74,6 @@ class PunchView: UIView {
         emptyPunchImageView.image = state.emptyPunchImage
         filledPunchImageView.image = state.filledPunchImage
         filledPunchImageView.highlighted = !state.isFilled
-        punchNumberLabel.text = "1"
+        punchNumberLabel.text = "\(state.punchNumber)"
     }
 }
