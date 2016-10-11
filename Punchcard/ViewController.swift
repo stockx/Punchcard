@@ -16,8 +16,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        punchesRequiredTextField.text = "4"
+        punchesRequiredTextField.text = "3"
         punchesReceivedTextField.text = "1"
         
         textFieldShouldReturn(punchesReceivedTextField)
@@ -34,6 +38,8 @@ extension ViewController: UITextFieldDelegate {
         }
         
         var state = punchCardView.state
+        state.emptyPunchImage = UIImage(named: "punch-outline")
+        state.filledPunchImage = UIImage(named: "punch")
         state.backgroundColor = UIColor(patternImage: UIImage(named: "punch_back_pattern")!)
         state.punchesRequired = punchesRequired
         state.punchesReceived = punchesReceived
