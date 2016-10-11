@@ -23,8 +23,8 @@ class PunchcardView: UIView {
         
         var rewardText: String
         
-        var punchNumberFont: UIFont?
-        var punchNumberColor: UIColor?
+        var punchNumberFont: UIFont
+        var punchNumberColor: UIColor
     }
     
     var state: State = State(backgroundColor: UIColor.whiteColor(),
@@ -33,8 +33,8 @@ class PunchcardView: UIView {
                              emptyPunchImage: nil,
                              filledPunchImage: nil,
                              rewardText: "",
-                             punchNumberFont: nil,
-                             punchNumberColor: nil) {
+                             punchNumberFont: UIFont.systemFontOfSize(UIFont.systemFontSize()),
+                             punchNumberColor: UIColor.lightGrayColor()) {
         didSet {
             update(oldValue)
         }
@@ -80,6 +80,6 @@ class PunchcardView: UIView {
     
     func update(oldState: State) {
         backgroundColor = state.backgroundColor
-        punchesContentView.layer.borderColor = state.punchNumberColor?.CGColor
+        punchesContentView.layer.borderColor = state.punchNumberColor.CGColor
     }
 }
