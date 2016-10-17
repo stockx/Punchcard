@@ -94,6 +94,8 @@ class PunchView: UIView {
         filledPunchImageView.image = state.filledPunchImage
         filledPunchImageView.hidden = !state.isFilled
         punchNumberLabel.text = "\(state.punchNumber)"
+        punchNumberLabel.font = state.punchNumberFont
+        punchNumberLabel.textColor = state.punchNumberColor
     }
     
     // MARK: Helper
