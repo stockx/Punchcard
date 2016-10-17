@@ -6,7 +6,6 @@ target 'Punchcard' do
   use_frameworks!
   # Pods for Punchcard
   pod 'SnapKit', '0.22.0'
-  pod 'OAStackView'
 
   target 'PunchcardTests' do
     inherit! :search_paths
