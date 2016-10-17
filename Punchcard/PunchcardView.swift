@@ -96,8 +96,9 @@ class PunchcardView: UIView {
         let punchNumberLabelHeight = NSString(string: "1").sizeWithAttributes([NSFontAttributeName: state.punchNumberFont]).height
         let punchViewSize = CGSize(width: emptyPunchImage.size.width,
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
+        
         guard punchViewSize.height < punchesContentView.bounds.size.height &&
-            punchViewSize.width * CGFloat(state.punchesRequired) < punchesContentView.bounds.size.width     else {
+            (punchViewSize.width * CGFloat(state.punchesRequired + 1 /* for the rewardView */)) < punchesContentView.bounds.size.width else {
                 print("Punchcard: PunchcardView is either too short or too tall to support the punchViews given the punch image and number of punches.\nPunchViews will be cut off.")
                 super.updateConstraints()
                 return
@@ -146,6 +147,7 @@ class PunchcardView: UIView {
         
         // Update the rewardView's state.
         var rewardViewState = rewardView.state
+        rewardViewState.size = state.emptyPunchImage?.size ?? CGSizeZero
         rewardViewState.achieved = state.punchesReceived == state.punchesRequired
         rewardViewState.unachievedColor = state.punchNumberColor
         rewardViewState.achievedBackgroundColor = UIColor.greenColor() // TODO: Add this to the state

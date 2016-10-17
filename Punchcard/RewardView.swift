@@ -20,6 +20,7 @@ import SnapKit
 class RewardView: UIView {
     
     struct State {
+        var size: CGSize // The size of the rewardView is determined by the size of punch images image
         var achieved: Bool
         
         var unachievedColor: UIColor
@@ -31,7 +32,8 @@ class RewardView: UIView {
         var textFont: UIFont
     }
     
-    var state: State = State(achieved: false,
+    var state: State = State(size: CGSizeZero,
+                             achieved: false,
                              unachievedColor: UIColor.lightGrayColor(),
                              achievedBackgroundColor: UIColor.greenColor(),
                              achievedTextColor: UIColor.whiteColor(),
@@ -45,43 +47,66 @@ class RewardView: UIView {
     /**
      How much spacing there is on both sides of the label for the circular border.
      */
-    let borderBuffer: CGFloat = 5
+    let borderBuffer: CGFloat = 1
     
     private var label = UILabel()
     
     /// Used to draw the circular border around the `label`.
     private let circularBorderView = UIView()
     
+    private var circularBorderViewWidthConstraint: NSLayoutConstraint!
+    
     // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        circularBorderView.layer.borderWidth = 1
+        circularBorderView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(circularBorderView)
-        circularBorderView.snp_makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
-        circularBorderView.addSubview(label)
-        label.snp_makeConstraints { make in
-            make.edges.equalToSuperview().inset(5)
-        }
-        
-        // Add aspect ration constraint
-        addConstraint(NSLayoutConstraint(item: label,
-            attribute: .Height,
+
+        // Constrain the circularBorderView to the center of its superview.
+        addConstraint(NSLayoutConstraint(item: circularBorderView,
+            attribute: .CenterX,
             relatedBy: .Equal,
-            toItem: label,
-            attribute: .Width,
+            toItem: self,
+            attribute: .CenterX,
+            multiplier: 1.0,
+            constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: circularBorderView,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .CenterY,
             multiplier: 1.0,
             constant: 0.0))
         
-        label.numberOfLines = 0
-        label.text = "FREE\nSHIPPING"
-        label.textAlignment = .Center
+        // Add aspect ratio constraint to keep height equal to width.
+        addConstraint(NSLayoutConstraint(item: circularBorderView,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: circularBorderView,
+            attribute: .Height,
+            multiplier: 1.0,
+            constant: state.size.width))
+        circularBorderViewWidthConstraint = NSLayoutConstraint(item: circularBorderView,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1.0,
+            constant: 20)
+        addConstraint(circularBorderViewWidthConstraint)
         
-        update()
-    }
+        circularBorderView.addSubview(label)
+        label.snp_makeConstraints { make in
+            make.edges.equalToSuperview().inset(self.borderBuffer)
+        }
+        
+        
+        label.numberOfLines = 0
+        label.textAlignment = .Center
+}
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) not implemented. Please use init(frame:)")
@@ -98,15 +123,13 @@ class RewardView: UIView {
     // MARK: State
     
     func update() {
+        circularBorderViewWidthConstraint.constant = state.size.width + borderBuffer
         circularBorderView.layer.borderColor = state.unachievedColor.CGColor
 
         label.text = state.text
         label.font = state.textFont
         label.textColor = state.achieved ? state.achievedTextColor : state.unachievedColor
         circularBorderView.backgroundColor = state.achieved ? state.achievedBackgroundColor : UIColor.clearColor()
-        
-        circularBorderView.backgroundColor = UIColor.greenColor()
-        backgroundColor = UIColor.redColor()
-        label.backgroundColor = UIColor.blueColor()
+        setNeedsUpdateConstraints()
     }
 }
