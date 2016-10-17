@@ -27,13 +27,16 @@ class RewardView: UIView {
         var achievedTextColor: UIColor
         
         var text: String
+        
+        var textFont: UIFont
     }
     
     var state: State = State(achieved: false,
                              unachievedColor: UIColor.lightGrayColor(),
                              achievedBackgroundColor: UIColor.greenColor(),
                              achievedTextColor: UIColor.whiteColor(),
-                             text: "") {
+                             text: "",
+                             textFont: UIFont.systemFontOfSize(UIFont.systemFontSize())) {
         didSet {
             update()
         }
@@ -98,6 +101,7 @@ class RewardView: UIView {
         circularBorderView.layer.borderColor = state.unachievedColor.CGColor
 
         label.text = state.text
+        label.font = state.textFont
         label.textColor = state.achieved ? state.achievedTextColor : state.unachievedColor
         circularBorderView.backgroundColor = state.achieved ? state.achievedBackgroundColor : UIColor.clearColor()
         

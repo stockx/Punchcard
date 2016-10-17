@@ -48,6 +48,7 @@ extension ViewController: UITextFieldDelegate {
         state.punchesReceived = punchesReceived
         state.punchNumberColor = UIColor.lightGrayColor()
         state.rewardText = rewardText
+        state.punchNumberFont = UIFont.systemFontOfSize(11)
         punchCardView.state = state
         
         return true

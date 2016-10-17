@@ -151,6 +151,7 @@ class PunchcardView: UIView {
         rewardViewState.achievedBackgroundColor = UIColor.greenColor() // TODO: Add this to the state
         rewardViewState.achievedTextColor = UIColor.whiteColor() // TODO: Add this to the state
         rewardViewState.text = state.rewardText
+        rewardViewState.textFont = state.punchNumberFont
         rewardView.state = rewardViewState
         
         backgroundColor = state.backgroundColor
