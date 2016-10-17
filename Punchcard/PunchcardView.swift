@@ -10,7 +10,6 @@ import UIKit
 
 // Libs
 import SnapKit
-import OAStackView
 
 class PunchcardView: UIView {
     
@@ -47,10 +46,10 @@ class PunchcardView: UIView {
      border around it.
      */
     private var punchesContentView = UIView()
-    private var punchesStackView = OAStackView()
     
     private var punchViews = [PunchView]()
     private var rewardView = RewardView(frame: CGRectZero)
+    private var spacerViews = [UIView]()
     
     // MARK: Init
     
@@ -73,13 +72,6 @@ class PunchcardView: UIView {
         punchesContentView.snp_makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
-        
-        punchesStackView.distribution = .FillProportionally
-        punchesStackView.axis = .Horizontal
-        punchesContentView.addSubview(punchesStackView)
-        punchesStackView.snp_makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
 
         layoutIfNeeded()
     }
@@ -98,10 +90,91 @@ class PunchcardView: UIView {
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
         
         guard punchViewSize.height < punchesContentView.bounds.size.height &&
-            (punchViewSize.width * CGFloat(state.punchesRequired + 1 /* for the rewardView */)) < punchesContentView.bounds.size.width else {
+            ((punchViewSize.width * CGFloat(state.punchesRequired)) + rewardView.state.size.width) < punchesContentView.bounds.size.width else {
                 print("Punchcard: PunchcardView is either too short or too tall to support the punchViews given the punch image and number of punches.\nPunchViews will be cut off.")
                 super.updateConstraints()
                 return
+        }
+        
+        // Make sure there are enough spacer views.
+        guard spacerViews.count == punchViews.count + 1 + 1 /* 2 because 1 for the right side, and 1 for the left of the spacer view */ else {
+            print("Punchcard: There are not enough spacer views to constrain all punch views and the reward view.")
+            super.updateConstraints()
+            return
+        }
+        
+        for (index, punchView) in punchViews.enumerate() {
+            // If it is the first element, grab the first spacer view and constrain
+            // it to the left and the right of the first punch view.
+            if index == 0 {
+                let firstSpacerView = spacerViews[index]
+                firstSpacerView.snp_remakeConstraints { make in
+                    make.left.equalToSuperview()
+                    make.height.equalTo(0)
+                    make.right.equalTo(punchView.snp_left)
+                    make.centerY.equalToSuperview()
+                }
+            }
+            
+            // If it's somewhere in the middle of the end, anchor the left spacer
+            // view to the right of the previous punchView and to the left of the
+            // punchView, and equal width/height to the previous spacer.
+            if index > 0 && index <= (punchViews.count - 1) {
+                let leftSpacerView = spacerViews[index]
+                let previousSpacerView = spacerViews[index - 1]
+                let previousPunchView = punchViews[index - 1]
+                
+                leftSpacerView.snp_remakeConstraints { make in
+                    make.height.equalTo(previousSpacerView.snp_height)
+                    make.width.equalTo(previousSpacerView.snp_width)
+                    make.centerY.equalToSuperview()
+                    
+                    make.left.equalTo(previousPunchView.snp_right)
+                    make.right.equalTo(punchView.snp_left)
+                }
+            }
+            
+            // If it's the last one, anchor the right spacer view to the right of
+            // the superview, and to the current punchView's left.
+            if index == punchViews.count - 1 {
+                let leftSpacerView = spacerViews[index]
+                let rightSpacerView = spacerViews[index + 1]
+                
+                rightSpacerView.snp_remakeConstraints { make in
+                    make.centerY.equalToSuperview()
+                    make.width.equalTo(leftSpacerView.snp_width)
+                    make.height.equalTo(leftSpacerView.snp_height)
+                    
+                    make.left.equalTo(punchView.snp_right)
+                    make.right.equalTo(rewardView.snp_left)
+                }
+            }
+            
+            // snp_make, not snp_remake, since we don't want to blow away its
+            // existing constraints.
+            punchView.snp_makeConstraints { make in
+                make.centerY.equalToSuperview()
+            }
+            
+        }
+        
+        rewardView.snp_remakeConstraints(closure: { (make) in
+            make.centerY.equalToSuperview()
+            
+            // TODO: Determine the correct height/width. This should be the max of the punchView's images width/height
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+        })
+        
+        if let lastSpacerView = spacerViews.last, firstSpacerView = spacerViews.first {
+            lastSpacerView.snp_remakeConstraints(closure: { (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalTo(rewardView.snp_right)
+                make.right.equalToSuperview()
+                
+                make.width.equalTo(firstSpacerView.snp_width)
+                make.height.equalTo(firstSpacerView.snp_height)
+            })
         }
         
         super.updateConstraints()
@@ -113,23 +186,36 @@ class PunchcardView: UIView {
         // If the number of punches required has changed, remove the old ones
         // and add the new ones.
         if oldState.punchesRequired != state.punchesRequired {
+            // Remove all punch views, spacer views, and reward view.
             punchViews.forEach {
-                self.punchesStackView.removeArrangedSubview($0)
-                self.punchesStackView.removeArrangedSubview(self.rewardView)
+                $0.removeFromSuperview()
             }
+            spacerViews.forEach {
+                $0.removeFromSuperview()
+            }
+            rewardView.removeFromSuperview()
             
             punchViews.removeAll()
+            spacerViews.removeAll()
             
             for _ in 0..<state.punchesRequired {
                 punchViews.append(PunchView(frame: CGRectZero))
+                spacerViews.append(UIView(frame: CGRectZero))
             }
+            
+            // Add one more for the rewardView
+            spacerViews.append(UIView(frame: CGRectZero))
+            
+            // Add one more spacer view for the right side.
+            spacerViews.append(UIView(frame: CGRectZero))
             
             punchViews.forEach {
-                self.punchesStackView.addArrangedSubview($0)
+                self.punchesContentView.addSubview($0)
             }
-            
-            punchesStackView.addArrangedSubview(rewardView)
-            
+            spacerViews.forEach {
+                self.punchesContentView.addSubview($0)
+            }
+            punchesContentView.addSubview(rewardView)
         }
         
         // Update all the punchViews state's.
