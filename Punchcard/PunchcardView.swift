@@ -25,6 +25,15 @@ class PunchcardView: UIView {
         
         var punchNumberFont: UIFont
         var punchNumberColor: UIColor
+        
+        var rewardViewSize: CGSize {
+            guard let emptyPunchImage = emptyPunchImage else {
+                return CGSizeZero
+            }
+            
+            return CGSize(width: max(emptyPunchImage.size.width, emptyPunchImage.size.height),
+                          height: max(emptyPunchImage.size.width, emptyPunchImage.size.height))
+        }
     }
     
     var state: State = State(backgroundColor: UIColor.whiteColor(),
@@ -90,7 +99,7 @@ class PunchcardView: UIView {
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
         
         guard punchViewSize.height < punchesContentView.bounds.size.height &&
-            ((punchViewSize.width * CGFloat(state.punchesRequired)) + rewardView.state.size.width) < punchesContentView.bounds.size.width else {
+            (punchViewSize.width * CGFloat(state.punchesRequired)) + state.rewardViewSize.width < punchesContentView.bounds.size.width else {
                 print("Punchcard: PunchcardView is either too short or too tall to support the punchViews given the punch image and number of punches.\nPunchViews will be cut off.")
                 super.updateConstraints()
                 return
@@ -158,23 +167,22 @@ class PunchcardView: UIView {
             
         }
         
-        rewardView.snp_remakeConstraints(closure: { (make) in
+        rewardView.snp_remakeConstraints { make in
             make.centerY.equalToSuperview()
-            
-            // TODO: Determine the correct height/width. This should be the max of the punchView's images width/height
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-        })
+
+            make.width.equalTo(self.state.rewardViewSize.width)
+            make.height.equalTo(self.state.rewardViewSize.height)
+        }
         
         if let lastSpacerView = spacerViews.last, firstSpacerView = spacerViews.first {
-            lastSpacerView.snp_remakeConstraints(closure: { (make) in
+            lastSpacerView.snp_remakeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.left.equalTo(rewardView.snp_right)
                 make.right.equalToSuperview()
                 
                 make.width.equalTo(firstSpacerView.snp_width)
                 make.height.equalTo(firstSpacerView.snp_height)
-            })
+            }
         }
         
         super.updateConstraints()
@@ -233,7 +241,6 @@ class PunchcardView: UIView {
         
         // Update the rewardView's state.
         var rewardViewState = rewardView.state
-        rewardViewState.size = state.emptyPunchImage?.size ?? CGSizeZero
         rewardViewState.achieved = state.punchesReceived == state.punchesRequired
         rewardViewState.unachievedColor = state.punchNumberColor
         rewardViewState.achievedBackgroundColor = UIColor.greenColor() // TODO: Add this to the state
