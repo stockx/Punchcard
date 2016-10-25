@@ -31,8 +31,8 @@ public class PunchcardView: UIView {
                 return CGSizeZero
             }
             
-            return CGSize(width: max(emptyPunchImage.size.width, emptyPunchImage.size.height),
-                          height: max(emptyPunchImage.size.width, emptyPunchImage.size.height))
+            return CGSize(width: max(emptyPunchImage.size.width, emptyPunchImage.size.height + 10 /* TODO: Make this based on the label height, as opposed to guessing */),
+                          height: max(emptyPunchImage.size.width, emptyPunchImage.size.height + 10))
         }
     }
     
