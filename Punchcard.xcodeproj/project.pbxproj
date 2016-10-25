@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0273BD041DBEEC12000C2B3A /* PunchcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD011DBEEC12000C2B3A /* PunchcardView.swift */; };
-		0273BD051DBEEC12000C2B3A /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD021DBEEC12000C2B3A /* PunchView.swift */; };
-		0273BD061DBEEC12000C2B3A /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD031DBEEC12000C2B3A /* RewardView.swift */; };
+		0273BD121DBEF1EA000C2B3A /* PunchcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD0F1DBEF1EA000C2B3A /* PunchcardView.swift */; };
+		0273BD131DBEF1EA000C2B3A /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD101DBEF1EA000C2B3A /* PunchView.swift */; };
+		0273BD141DBEF1EA000C2B3A /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD111DBEF1EA000C2B3A /* RewardView.swift */; };
 		02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */; };
 		02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1DD1DAC304300AB8BFF /* ViewController.swift */; };
 		02D8B1E11DAC304300AB8BFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1DF1DAC304300AB8BFF /* Main.storyboard */; };
@@ -31,9 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0273BD011DBEEC12000C2B3A /* PunchcardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardView.swift; sourceTree = "<group>"; };
-		0273BD021DBEEC12000C2B3A /* PunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
-		0273BD031DBEEC12000C2B3A /* RewardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
+		0273BD0F1DBEF1EA000C2B3A /* PunchcardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardView.swift; sourceTree = "<group>"; };
+		0273BD101DBEF1EA000C2B3A /* PunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
+		0273BD111DBEF1EA000C2B3A /* RewardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
 		02D8B1D81DAC304300AB8BFF /* Punchcard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Punchcard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02D8B1DD1DAC304300AB8BFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,14 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0273BD001DBEEC12000C2B3A /* Source */ = {
+		0273BD0E1DBEF1EA000C2B3A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				0273BD011DBEEC12000C2B3A /* PunchcardView.swift */,
-				0273BD021DBEEC12000C2B3A /* PunchView.swift */,
-				0273BD031DBEEC12000C2B3A /* RewardView.swift */,
+				0273BD0F1DBEF1EA000C2B3A /* PunchcardView.swift */,
+				0273BD101DBEF1EA000C2B3A /* PunchView.swift */,
+				0273BD111DBEF1EA000C2B3A /* RewardView.swift */,
 			);
-			path = Source;
+			name = Source;
+			path = ../Source;
 			sourceTree = "<group>";
 		};
 		02D8B1CF1DAC304300AB8BFF = {
@@ -105,7 +106,7 @@
 		02D8B1DA1DAC304300AB8BFF /* Punchcard */ = {
 			isa = PBXGroup;
 			children = (
-				0273BD001DBEEC12000C2B3A /* Source */,
+				0273BD0E1DBEF1EA000C2B3A /* Source */,
 				02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */,
 				02D8B1DD1DAC304300AB8BFF /* ViewController.swift */,
 				02D8B1DF1DAC304300AB8BFF /* Main.storyboard */,
@@ -347,9 +348,9 @@
 			files = (
 				02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */,
 				02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */,
-				0273BD041DBEEC12000C2B3A /* PunchcardView.swift in Sources */,
-				0273BD061DBEEC12000C2B3A /* RewardView.swift in Sources */,
-				0273BD051DBEEC12000C2B3A /* PunchView.swift in Sources */,
+				0273BD121DBEF1EA000C2B3A /* PunchcardView.swift in Sources */,
+				0273BD141DBEF1EA000C2B3A /* RewardView.swift in Sources */,
+				0273BD131DBEF1EA000C2B3A /* PunchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
