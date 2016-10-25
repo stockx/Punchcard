@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0273BD041DBEEC12000C2B3A /* PunchcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD011DBEEC12000C2B3A /* PunchcardView.swift */; };
+		0273BD051DBEEC12000C2B3A /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD021DBEEC12000C2B3A /* PunchView.swift */; };
+		0273BD061DBEEC12000C2B3A /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273BD031DBEEC12000C2B3A /* RewardView.swift */; };
 		02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */; };
 		02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1DD1DAC304300AB8BFF /* ViewController.swift */; };
 		02D8B1E11DAC304300AB8BFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1DF1DAC304300AB8BFF /* Main.storyboard */; };
 		02D8B1E31DAC304300AB8BFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1E21DAC304300AB8BFF /* Assets.xcassets */; };
 		02D8B1E61DAC304300AB8BFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1E41DAC304300AB8BFF /* LaunchScreen.storyboard */; };
 		02D8B1F11DAC304400AB8BFF /* PunchcardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */; };
-		02D8B1FC1DAC305500AB8BFF /* PunchcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */; };
-		02D8B1FE1DAC347200AB8BFF /* PunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1FD1DAC347200AB8BFF /* PunchView.swift */; };
-		02EA3B4A1DAD701D0081E8C4 /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EA3B491DAD701D0081E8C4 /* RewardView.swift */; };
 		2ADA30B6934CF3D2D53BE10E /* Pods_PunchcardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284A86D02D9F6770DFF366F0 /* Pods_PunchcardTests.framework */; };
 		C3DA359C33428391A2C5545B /* Pods_Punchcard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388B4077896166E80039CDEC /* Pods_Punchcard.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0273BD011DBEEC12000C2B3A /* PunchcardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardView.swift; sourceTree = "<group>"; };
+		0273BD021DBEEC12000C2B3A /* PunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
+		0273BD031DBEEC12000C2B3A /* RewardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
 		02D8B1D81DAC304300AB8BFF /* Punchcard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Punchcard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02D8B1DD1DAC304300AB8BFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,9 +44,6 @@
 		02D8B1EC1DAC304400AB8BFF /* PunchcardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PunchcardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchcardTests.swift; sourceTree = "<group>"; };
 		02D8B1F21DAC304400AB8BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchcardView.swift; sourceTree = "<group>"; };
-		02D8B1FD1DAC347200AB8BFF /* PunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunchView.swift; sourceTree = "<group>"; };
-		02EA3B491DAD701D0081E8C4 /* RewardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
 		0534C5BCD08D0A8676F335D0 /* Pods-PunchcardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PunchcardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PunchcardTests/Pods-PunchcardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		284A86D02D9F6770DFF366F0 /* Pods_PunchcardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PunchcardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		388B4077896166E80039CDEC /* Pods_Punchcard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punchcard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +72,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0273BD001DBEEC12000C2B3A /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0273BD011DBEEC12000C2B3A /* PunchcardView.swift */,
+				0273BD021DBEEC12000C2B3A /* PunchView.swift */,
+				0273BD031DBEEC12000C2B3A /* RewardView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		02D8B1CF1DAC304300AB8BFF = {
 			isa = PBXGroup;
 			children = (
@@ -95,15 +105,13 @@
 		02D8B1DA1DAC304300AB8BFF /* Punchcard */ = {
 			isa = PBXGroup;
 			children = (
+				0273BD001DBEEC12000C2B3A /* Source */,
 				02D8B1DB1DAC304300AB8BFF /* AppDelegate.swift */,
 				02D8B1DD1DAC304300AB8BFF /* ViewController.swift */,
 				02D8B1DF1DAC304300AB8BFF /* Main.storyboard */,
 				02D8B1E21DAC304300AB8BFF /* Assets.xcassets */,
 				02D8B1E41DAC304300AB8BFF /* LaunchScreen.storyboard */,
 				02D8B1E71DAC304300AB8BFF /* Info.plist */,
-				02D8B1FB1DAC305500AB8BFF /* PunchcardView.swift */,
-				02D8B1FD1DAC347200AB8BFF /* PunchView.swift */,
-				02EA3B491DAD701D0081E8C4 /* RewardView.swift */,
 			);
 			path = Punchcard;
 			sourceTree = "<group>";
@@ -339,9 +347,9 @@
 			files = (
 				02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */,
 				02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */,
-				02D8B1FC1DAC305500AB8BFF /* PunchcardView.swift in Sources */,
-				02EA3B4A1DAD701D0081E8C4 /* RewardView.swift in Sources */,
-				02D8B1FE1DAC347200AB8BFF /* PunchView.swift in Sources */,
+				0273BD041DBEEC12000C2B3A /* PunchcardView.swift in Sources */,
+				0273BD061DBEEC12000C2B3A /* RewardView.swift in Sources */,
+				0273BD051DBEEC12000C2B3A /* PunchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
