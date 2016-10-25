@@ -79,7 +79,7 @@ public class PunchcardView: UIView {
         addSubview(punchesContentView)
         
         punchesContentView.snp_makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
+            make.edges.equalToSuperview().inset(5)
         }
 
         layoutIfNeeded()
