@@ -11,22 +11,22 @@ import UIKit
 // Libs
 import SnapKit
 
-class PunchcardView: UIView {
+public class PunchcardView: UIView {
     
-    struct State {
-        var backgroundColor: UIColor
-        var punchesRequired: Int
-        var punchesReceived: Int
+    public struct State {
+        public var backgroundColor: UIColor
+        public var punchesRequired: Int
+        public var punchesReceived: Int
         
-        var emptyPunchImage: UIImage?
-        var filledPunchImage: UIImage?
+        public var emptyPunchImage: UIImage?
+        public var filledPunchImage: UIImage?
         
-        var rewardText: String
+        public var rewardText: String
         
-        var punchNumberFont: UIFont
-        var punchNumberColor: UIColor
+        public var punchNumberFont: UIFont
+        public var punchNumberColor: UIColor
         
-        var rewardViewSize: CGSize {
+        public var rewardViewSize: CGSize {
             guard let emptyPunchImage = emptyPunchImage else {
                 return CGSizeZero
             }
@@ -36,7 +36,7 @@ class PunchcardView: UIView {
         }
     }
     
-    var state: State = State(backgroundColor: UIColor.whiteColor(),
+    public var state: State = State(backgroundColor: UIColor.whiteColor(),
                              punchesRequired: 0,
                              punchesReceived: 0,
                              emptyPunchImage: nil,
@@ -62,13 +62,13 @@ class PunchcardView: UIView {
     
     // MARK: Init
     
-    init(state: State) {
+    public init(state: State) {
         super.init(frame: CGRect.zero)
         initialize()
         self.state = state
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initialize()
     }
@@ -87,7 +87,7 @@ class PunchcardView: UIView {
     
     // MARK: View
     
-    override func updateConstraints() {
+    override public func updateConstraints() {
         guard let emptyPunchImage = state.emptyPunchImage else {
             super.updateConstraints()
             return
