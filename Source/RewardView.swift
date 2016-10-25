@@ -22,9 +22,10 @@ class RewardView: UIView {
     struct State {
         var achieved: Bool
         
-        var unachievedColor: UIColor
+        var borderColor: UIColor
         var achievedBackgroundColor: UIColor // Will be clear when the reward is unachieved
         var achievedTextColor: UIColor
+        var unachievedTextColor: UIColor
         
         var text: String
         
@@ -32,9 +33,10 @@ class RewardView: UIView {
     }
     
     var state: State = State(achieved: false,
-                             unachievedColor: UIColor.lightGrayColor(),
+                             borderColor: UIColor.lightGrayColor(),
                              achievedBackgroundColor: UIColor.greenColor(),
                              achievedTextColor: UIColor.whiteColor(),
+                             unachievedTextColor: UIColor.lightGrayColor(),
                              text: "",
                              textFont: UIFont.systemFontOfSize(UIFont.systemFontSize())) {
         didSet {
@@ -82,11 +84,11 @@ class RewardView: UIView {
     // MARK: State
     
     func update() {
-        layer.borderColor = state.unachievedColor.CGColor
+        layer.borderColor = state.borderColor.CGColor
 
         label.text = state.text
         label.font = state.textFont
-        label.textColor = state.achieved ? state.achievedTextColor : state.unachievedColor
+        label.textColor = state.achieved ? state.achievedTextColor : state.unachievedTextColor
         backgroundColor = state.achieved ? state.achievedBackgroundColor : UIColor.clearColor()
         setNeedsUpdateConstraints()
     }

@@ -22,6 +22,7 @@ public class PunchcardView: UIView {
         public var filledPunchImage: UIImage?
         
         public var rewardText: String
+        public var rewardTextColor: UIColor
         
         public var punchNumberFont: UIFont
         public var punchNumberColor: UIColor
@@ -42,6 +43,7 @@ public class PunchcardView: UIView {
                              emptyPunchImage: nil,
                              filledPunchImage: nil,
                              rewardText: "",
+                             rewardTextColor: UIColor.greenColor(),
                              punchNumberFont: UIFont.systemFontOfSize(UIFont.systemFontSize()),
                              punchNumberColor: UIColor.lightGrayColor()) {
         didSet {
@@ -242,9 +244,10 @@ public class PunchcardView: UIView {
         // Update the rewardView's state.
         var rewardViewState = rewardView.state
         rewardViewState.achieved = state.punchesReceived == state.punchesRequired
-        rewardViewState.unachievedColor = state.punchNumberColor
-        rewardViewState.achievedBackgroundColor = UIColor.greenColor() // TODO: Add this to the state
+        rewardViewState.borderColor = state.punchNumberColor
+        rewardViewState.achievedBackgroundColor = state.rewardTextColor
         rewardViewState.achievedTextColor = UIColor.whiteColor() // TODO: Add this to the state
+        rewardViewState.unachievedTextColor = state.rewardTextColor
         rewardViewState.text = state.rewardText
         rewardViewState.textFont = state.punchNumberFont
         rewardView.state = rewardViewState
