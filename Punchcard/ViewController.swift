@@ -44,6 +44,7 @@ extension ViewController: UITextFieldDelegate {
         state.emptyPunchImage = UIImage(named: "punch-outline")
         state.filledPunchImage = UIImage(named: "punch")
         state.backgroundColor = UIColor(patternImage: UIImage(named: "punch_back_pattern")!)
+        state.borderColor = UIColor.darkGrayColor()
         state.punchesRequired = punchesRequired
         state.punchesReceived = punchesReceived
         state.punchNumberColor = UIColor.lightGrayColor()

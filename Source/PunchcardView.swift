@@ -15,6 +15,7 @@ public class PunchcardView: UIView {
     
     public struct State {
         public var backgroundColor: UIColor
+        public var borderColor: UIColor
         public var punchesRequired: Int
         public var punchesReceived: Int
         
@@ -38,14 +39,15 @@ public class PunchcardView: UIView {
     }
     
     public var state: State = State(backgroundColor: UIColor.whiteColor(),
-                             punchesRequired: 0,
-                             punchesReceived: 0,
-                             emptyPunchImage: nil,
-                             filledPunchImage: nil,
-                             rewardText: "",
-                             rewardTextColor: UIColor.greenColor(),
-                             punchNumberFont: UIFont.systemFontOfSize(UIFont.systemFontSize()),
-                             punchNumberColor: UIColor.lightGrayColor()) {
+                                    borderColor: UIColor.grayColor(),
+                                    punchesRequired: 0,
+                                    punchesReceived: 0,
+                                    emptyPunchImage: nil,
+                                    filledPunchImage: nil,
+                                    rewardText: "",
+                                    rewardTextColor: UIColor.greenColor(),
+                                    punchNumberFont: UIFont.systemFontOfSize(UIFont.systemFontSize()),
+                                    punchNumberColor: UIColor.lightGrayColor()) {
         didSet {
             update(oldValue)
         }
@@ -253,7 +255,7 @@ public class PunchcardView: UIView {
         rewardView.state = rewardViewState
         
         backgroundColor = state.backgroundColor
-        punchesContentView.layer.borderColor = state.punchNumberColor.CGColor
+        punchesContentView.layer.borderColor = state.borderColor.CGColor
         
         setNeedsUpdateConstraints()
     }
