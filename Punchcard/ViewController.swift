@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         punchesReceivedTextField.text = "1"
         rewardTextTextField.text = "FREE SHIPPING"
         
-        textFieldShouldReturn(punchesReceivedTextField)
+        _ = textFieldShouldReturn(punchesReceivedTextField)
     }
 }
 
