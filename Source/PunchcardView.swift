@@ -90,7 +90,7 @@ public class PunchcardView: UIView {
         punchesContentView.layer.borderWidth = 1.0
         addSubview(punchesContentView)
         
-        punchesContentView.snp_makeConstraints { make in
+        punchesContentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(5)
         }
 
@@ -129,10 +129,10 @@ public class PunchcardView: UIView {
             // it to the left and the right of the first punch view.
             if index == 0 {
                 let firstSpacerView = spacerViews[index]
-                firstSpacerView.snp_remakeConstraints { make in
+                firstSpacerView.snp.remakeConstraints { make in
                     make.left.equalToSuperview()
                     make.height.equalTo(0)
-                    make.right.equalTo(punchView.snp_left)
+                    make.right.equalTo(punchView.snp.left)
                     make.centerY.equalToSuperview()
                 }
             }
@@ -145,13 +145,13 @@ public class PunchcardView: UIView {
                 let previousSpacerView = spacerViews[index - 1]
                 let previousPunchView = punchViews[index - 1]
                 
-                leftSpacerView.snp_remakeConstraints { make in
-                    make.height.equalTo(previousSpacerView.snp_height)
-                    make.width.equalTo(previousSpacerView.snp_width)
+                leftSpacerView.snp.remakeConstraints { make in
+                    make.height.equalTo(previousSpacerView.snp.height)
+                    make.width.equalTo(previousSpacerView.snp.width)
                     make.centerY.equalToSuperview()
                     
-                    make.left.equalTo(previousPunchView.snp_right)
-                    make.right.equalTo(punchView.snp_left)
+                    make.left.equalTo(previousPunchView.snp.right)
+                    make.right.equalTo(punchView.snp.left)
                 }
             }
             
@@ -161,25 +161,25 @@ public class PunchcardView: UIView {
                 let leftSpacerView = spacerViews[index]
                 let rightSpacerView = spacerViews[index + 1]
                 
-                rightSpacerView.snp_remakeConstraints { make in
+                rightSpacerView.snp.remakeConstraints { make in
                     make.centerY.equalToSuperview()
-                    make.width.equalTo(leftSpacerView.snp_width)
-                    make.height.equalTo(leftSpacerView.snp_height)
+                    make.width.equalTo(leftSpacerView.snp.width)
+                    make.height.equalTo(leftSpacerView.snp.height)
                     
-                    make.left.equalTo(punchView.snp_right)
-                    make.right.equalTo(rewardView.snp_left)
+                    make.left.equalTo(punchView.snp.right)
+                    make.right.equalTo(rewardView.snp.left)
                 }
             }
             
-            // snp_make, not snp_remake, since we don't want to blow away its
+            // snp.make, not snp.remake, since we don't want to blow away its
             // existing constraints.
-            punchView.snp_makeConstraints { make in
+            punchView.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
             }
             
         }
         
-        rewardView.snp_remakeConstraints { make in
+        rewardView.snp.remakeConstraints { make in
             make.centerY.equalToSuperview()
 
             make.width.equalTo(self.state.rewardViewSize.width)
@@ -188,13 +188,13 @@ public class PunchcardView: UIView {
         
         if let lastSpacerView = spacerViews.last,
             let firstSpacerView = spacerViews.first {
-            lastSpacerView.snp_remakeConstraints { make in
+            lastSpacerView.snp.remakeConstraints { make in
                 make.centerY.equalToSuperview()
-                make.left.equalTo(rewardView.snp_right)
+                make.left.equalTo(rewardView.snp.right)
                 make.right.equalToSuperview()
                 
-                make.width.equalTo(firstSpacerView.snp_width)
-                make.height.equalTo(firstSpacerView.snp_height)
+                make.width.equalTo(firstSpacerView.snp.width)
+                make.height.equalTo(firstSpacerView.snp.height)
             }
         }
         

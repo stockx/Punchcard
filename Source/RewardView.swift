@@ -61,7 +61,7 @@ class RewardView: UIView {
         layer.borderWidth = 1
         
         addSubview(label)
-        label.snp_makeConstraints { make in
+        label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(self.borderBuffer)
         }
         

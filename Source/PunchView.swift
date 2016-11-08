@@ -44,7 +44,7 @@ class PunchView: UIView {
         addSubview(filledPunchImageView)
         addSubview(punchNumberLabel)
         
-        emptyPunchImageView.snp_makeConstraints { make in
+        emptyPunchImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
@@ -52,14 +52,14 @@ class PunchView: UIView {
         
         punchNumberLabel.textAlignment = .center
         
-        punchNumberLabel.snp_makeConstraints { make in
-            make.top.equalTo(emptyPunchImageView.snp_bottom)
+        punchNumberLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyPunchImageView.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
-        filledPunchImageView.snp_makeConstraints { make in
+        filledPunchImageView.snp.makeConstraints { make in
             make.edges.equalTo(self.emptyPunchImageView)
         }
 
