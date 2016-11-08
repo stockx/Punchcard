@@ -32,7 +32,7 @@ public class PunchcardView: UIView {
         
         public var rewardViewSize: CGSize {
             guard let emptyPunchImage = emptyPunchImage else {
-                return CGSizeZero
+                return .zero
             }
             
             return CGSize(width: max(emptyPunchImage.size.width, emptyPunchImage.size.height + 10 /* TODO: Make this based on the label height, as opposed to guessing */),
@@ -40,18 +40,18 @@ public class PunchcardView: UIView {
         }
         
         init() {
-            self.backgroundColor = UIColor.whiteColor()
-            self.borderColor = UIColor.grayColor()
+            self.backgroundColor = .white
+            self.borderColor = .gray
             self.punchesRequired = 0
             self.punchesReceived = 0
             self.emptyPunchImage = nil
             self.filledPunchImage = nil
-            self.rewardTextFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+            self.rewardTextFont = .systemFont(ofSize: UIFont.systemFontSize)
             self.rewardText = ""
-            self.rewardTextColor = UIColor.greenColor()
-            self.rewardFillColor = UIColor.greenColor()
-            self.punchNumberFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
-            self.punchNumberColor = UIColor.lightGrayColor()
+            self.rewardTextColor = .green
+            self.rewardFillColor = .green
+            self.punchNumberFont = .systemFont(ofSize: UIFont.systemFontSize)
+            self.punchNumberColor = .lightGray
         }
     }
     
@@ -66,11 +66,11 @@ public class PunchcardView: UIView {
      Slightly inset from the edges of the `PunchcardView`, and has a
      border around it.
      */
-    private var punchesContentView = UIView()
+    fileprivate var punchesContentView = UIView()
     
-    private var punchViews = [PunchView]()
-    private var rewardView = RewardView(frame: CGRectZero)
-    private var spacerViews = [UIView]()
+    fileprivate var punchViews = [PunchView]()
+    fileprivate var rewardView = RewardView(frame: .zero)
+    fileprivate var spacerViews = [UIView]()
     
     // MARK: Init
     
@@ -85,8 +85,8 @@ public class PunchcardView: UIView {
         initialize()
     }
     
-    private func initialize() {
-        punchesContentView.backgroundColor = UIColor.clearColor()
+    fileprivate func initialize() {
+        punchesContentView.backgroundColor = .clear
         punchesContentView.layer.borderWidth = 1.0
         addSubview(punchesContentView)
         
@@ -106,7 +106,7 @@ public class PunchcardView: UIView {
         }
         
         // Calculate if the PunchcardView has enough size to accommodate all punchViews.
-        let punchNumberLabelHeight = NSString(string: "1").sizeWithAttributes([NSFontAttributeName: state.punchNumberFont]).height
+        let punchNumberLabelHeight = NSString(string: "1").size(attributes: [NSFontAttributeName: state.punchNumberFont]).height
         let punchViewSize = CGSize(width: emptyPunchImage.size.width,
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
         
@@ -124,7 +124,7 @@ public class PunchcardView: UIView {
             return
         }
         
-        for (index, punchView) in punchViews.enumerate() {
+        for (index, punchView) in punchViews.enumerated() {
             // If it is the first element, grab the first spacer view and constrain
             // it to the left and the right of the first punch view.
             if index == 0 {
@@ -186,7 +186,8 @@ public class PunchcardView: UIView {
             make.height.equalTo(self.state.rewardViewSize.height)
         }
         
-        if let lastSpacerView = spacerViews.last, firstSpacerView = spacerViews.first {
+        if let lastSpacerView = spacerViews.last,
+            let firstSpacerView = spacerViews.first {
             lastSpacerView.snp_remakeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.left.equalTo(rewardView.snp_right)
@@ -202,7 +203,7 @@ public class PunchcardView: UIView {
     
     // MARK: State
     
-    func update(oldState: State) {
+    func update(_ oldState: State) {
         // If the number of punches required has changed, remove the old ones
         // and add the new ones.
         if oldState.punchesRequired != state.punchesRequired {
@@ -219,15 +220,15 @@ public class PunchcardView: UIView {
             spacerViews.removeAll()
             
             for _ in 0..<state.punchesRequired {
-                punchViews.append(PunchView(frame: CGRectZero))
-                spacerViews.append(UIView(frame: CGRectZero))
+                punchViews.append(PunchView(frame: .zero))
+                spacerViews.append(UIView(frame:  .zero))
             }
             
             // Add one more for the rewardView
-            spacerViews.append(UIView(frame: CGRectZero))
+            spacerViews.append(UIView(frame: .zero))
             
             // Add one more spacer view for the right side.
-            spacerViews.append(UIView(frame: CGRectZero))
+            spacerViews.append(UIView(frame: .zero))
             
             punchViews.forEach {
                 self.punchesContentView.addSubview($0)
@@ -239,7 +240,7 @@ public class PunchcardView: UIView {
         }
         
         // Update all the punchViews state's.
-        for (index, punchView) in punchViews.enumerate() {
+        for (index, punchView) in punchViews.enumerated() {
             var punchViewState = punchView.state
             punchViewState.emptyPunchImage = state.emptyPunchImage
             punchViewState.filledPunchImage = state.filledPunchImage
@@ -256,14 +257,14 @@ public class PunchcardView: UIView {
         rewardViewState.achieved = state.punchesReceived == state.punchesRequired
         rewardViewState.borderColor = state.punchNumberColor
         rewardViewState.achievedBackgroundColor = state.rewardFillColor
-        rewardViewState.achievedTextColor = UIColor.whiteColor() // TODO: Add this to the state
+        rewardViewState.achievedTextColor = .white // TODO: Add this to the state
         rewardViewState.unachievedTextColor = state.rewardTextColor
         rewardViewState.text = state.rewardText
         rewardViewState.textFont = state.rewardTextFont
         rewardView.state = rewardViewState
         
         backgroundColor = state.backgroundColor
-        punchesContentView.layer.borderColor = state.borderColor.CGColor
+        punchesContentView.layer.borderColor = state.borderColor.cgColor
         
         setNeedsUpdateConstraints()
     }

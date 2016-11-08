@@ -25,9 +25,9 @@ class PunchView: UIView {
         var punchNumberColor: UIColor?
     }
     
-    private let emptyPunchImageView = UIImageView()
-    private let filledPunchImageView = UIImageView()
-    private let punchNumberLabel = UILabel()
+    fileprivate let emptyPunchImageView = UIImageView()
+    fileprivate let filledPunchImageView = UIImageView()
+    fileprivate let punchNumberLabel = UILabel()
     
     var state: State = State(emptyPunchImage: nil, filledPunchImage: nil, punchNumber: 0, isFilled: false, punchNumberFont: nil, punchNumberColor: nil) {
         didSet {
@@ -50,7 +50,7 @@ class PunchView: UIView {
             make.right.equalToSuperview()
         }
         
-        punchNumberLabel.textAlignment = .Center
+        punchNumberLabel.textAlignment = .center
         
         punchNumberLabel.snp_makeConstraints { make in
             make.top.equalTo(emptyPunchImageView.snp_bottom)
@@ -65,11 +65,11 @@ class PunchView: UIView {
 
         // Apply a transom translation and rotation to the filledPunchImageView
         let randomRotationValue = randomBetweenNumbers(0, secondNum: 0.1) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
-        let rotationTransform = CGAffineTransformMakeRotation(randomRotationValue)
+        let rotationTransform = CGAffineTransform(rotationAngle: randomRotationValue)
         let randomTranslationDX = randomBetweenNumbers(1.5, secondNum: 2.5) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
         let randomTranslationDY = randomBetweenNumbers(1.5, secondNum: 2.5) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)
-        let translationTransform = CGAffineTransformMakeTranslation(randomTranslationDX, randomTranslationDY)
-        filledPunchImageView.transform = CGAffineTransformConcat(rotationTransform, translationTransform)
+        let translationTransform = CGAffineTransform(translationX: randomTranslationDX, y: randomTranslationDY)
+        filledPunchImageView.transform = rotationTransform.concatenating(translationTransform)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,7 +81,7 @@ class PunchView: UIView {
     func update() {
         emptyPunchImageView.image = state.emptyPunchImage
         filledPunchImageView.image = state.filledPunchImage
-        filledPunchImageView.hidden = !state.isFilled
+        filledPunchImageView.isHidden = !state.isFilled
         punchNumberLabel.text = "\(state.punchNumber)"
         punchNumberLabel.font = state.punchNumberFont
         punchNumberLabel.textColor = state.punchNumberColor
@@ -89,7 +89,7 @@ class PunchView: UIView {
     
     // MARK: Helper
     
-    private func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
+    fileprivate func randomBetweenNumbers(_ firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
         return CGFloat(arc4random_uniform(1000)) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
 }

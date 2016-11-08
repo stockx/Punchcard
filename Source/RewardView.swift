@@ -33,12 +33,12 @@ class RewardView: UIView {
     }
     
     var state: State = State(achieved: false,
-                             borderColor: UIColor.lightGrayColor(),
-                             achievedBackgroundColor: UIColor.greenColor(),
-                             achievedTextColor: UIColor.whiteColor(),
-                             unachievedTextColor: UIColor.lightGrayColor(),
+                             borderColor: .lightGray,
+                             achievedBackgroundColor: .green,
+                             achievedTextColor: .white,
+                             unachievedTextColor: .lightGray,
                              text: "",
-                             textFont: UIFont.systemFontOfSize(UIFont.systemFontSize())) {
+                             textFont: .systemFont(ofSize: UIFont.systemFontSize)) {
         didSet {
             update()
         }
@@ -49,7 +49,7 @@ class RewardView: UIView {
      */
     let borderBuffer: CGFloat = 1
     
-    private var label = UILabel()
+    fileprivate var label = UILabel()
     
     // MARK: Init
     
@@ -66,7 +66,7 @@ class RewardView: UIView {
         }
         
         label.numberOfLines = 0
-        label.textAlignment = .Center
+        label.textAlignment = .center
 }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,12 +84,12 @@ class RewardView: UIView {
     // MARK: State
     
     func update() {
-        layer.borderColor = state.borderColor.CGColor
+        layer.borderColor = state.borderColor.cgColor
 
         label.text = state.text
         label.font = state.textFont
         label.textColor = state.achieved ? state.achievedTextColor : state.unachievedTextColor
-        backgroundColor = state.achieved ? state.achievedBackgroundColor : UIColor.clearColor()
+        backgroundColor = state.achieved ? state.achievedBackgroundColor : .clear
         setNeedsUpdateConstraints()
     }
 }
