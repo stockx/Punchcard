@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name               = "Punchcard"
   s.version            = "0.3"
-  s.summary            = "A customizable punchcard view"
+  s.summary            = "A customizable punchcard view written in Swift."
   s.homepage           = "https://github.com/stockx/Punchcard/"
   s.license            = "MIT"
   s.author             = { "Josh Sklar" => "jrmsklar@gmail.com" }
