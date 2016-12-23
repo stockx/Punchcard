@@ -24,10 +24,10 @@ In this screenshot the user has achieved 2 out of 5 punches, and the images used
 
 ##<a name="features"> Features </a>
 
-- [x] Fully supports AutoLayout.
+- [x] Supports AutoLayout.
 - [x] Applies a random transform (translation and rotation) to the punches to simulate a real-life stamp.
 - [x] Supports any number of punches as long as they fit within the bounds of the view.
-- [x] Customize background images of all punches.
+- [x] Supports customizing background images of all punches.
 - [x] Supports being created either in code or a Storyboard.
 
 <a name="installation"> Installation </a>
