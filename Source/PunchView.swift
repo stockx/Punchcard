@@ -62,15 +62,7 @@ class PunchView: UIView {
         
         punchNumberLabel.textAlignment = .center
         
-        [.top, .bottom, .leading, .trailing].forEach {
-            addConstraint(NSLayoutConstraint(item: filledPunchImageView,
-                                             attribute: $0,
-                                             relatedBy: .equal,
-                                             toItem: emptyPunchImageView,
-                                             attribute: $0,
-                                             multiplier: 1.0,
-                                             constant: 0.0))
-        }
+        makeEdgesOf(filledPunchImageView, equalTo: emptyPunchImageView)
 
         // Apply a transom translation and rotation to the filledPunchImageView
         let randomRotationValue = randomBetweenNumbers(0, secondNum: 0.1) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)

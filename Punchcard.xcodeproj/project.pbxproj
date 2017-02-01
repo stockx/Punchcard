@@ -16,6 +16,7 @@
 		02D8B1E31DAC304300AB8BFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1E21DAC304300AB8BFF /* Assets.xcassets */; };
 		02D8B1E61DAC304300AB8BFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D8B1E41DAC304300AB8BFF /* LaunchScreen.storyboard */; };
 		02D8B1F11DAC304400AB8BFF /* PunchcardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */; };
+		032C526C1E4242AB00DC6DDC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C526B1E4242AB00DC6DDC /* UIView+AutoLayout.swift */; };
 		2ADA30B6934CF3D2D53BE10E /* Pods_PunchcardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284A86D02D9F6770DFF366F0 /* Pods_PunchcardTests.framework */; };
 		C3DA359C33428391A2C5545B /* Pods_Punchcard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388B4077896166E80039CDEC /* Pods_Punchcard.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		02D8B1EC1DAC304400AB8BFF /* PunchcardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PunchcardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D8B1F01DAC304400AB8BFF /* PunchcardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunchcardTests.swift; sourceTree = "<group>"; };
 		02D8B1F21DAC304400AB8BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		032C526B1E4242AB00DC6DDC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		0534C5BCD08D0A8676F335D0 /* Pods-PunchcardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PunchcardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PunchcardTests/Pods-PunchcardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		284A86D02D9F6770DFF366F0 /* Pods_PunchcardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PunchcardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		388B4077896166E80039CDEC /* Pods_Punchcard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punchcard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				0273BD0F1DBEF1EA000C2B3A /* PunchcardView.swift */,
 				0273BD101DBEF1EA000C2B3A /* PunchView.swift */,
 				0273BD111DBEF1EA000C2B3A /* RewardView.swift */,
+				032C526B1E4242AB00DC6DDC /* UIView+AutoLayout.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -349,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02D8B1DE1DAC304300AB8BFF /* ViewController.swift in Sources */,
+				032C526C1E4242AB00DC6DDC /* UIView+AutoLayout.swift in Sources */,
 				02D8B1DC1DAC304300AB8BFF /* AppDelegate.swift in Sources */,
 				0273BD121DBEF1EA000C2B3A /* PunchcardView.swift in Sources */,
 				0273BD141DBEF1EA000C2B3A /* RewardView.swift in Sources */,
