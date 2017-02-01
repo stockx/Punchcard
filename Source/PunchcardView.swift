@@ -8,9 +8,6 @@
 
 import UIKit
 
-// Libs
-import SnapKit
-
 public class PunchcardView: UIView {
     
     public struct State {
