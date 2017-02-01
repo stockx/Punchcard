@@ -158,14 +158,13 @@ public class PunchcardView: UIView {
                 let leftSpacerView = spacerViews[index]
                 let rightSpacerView = spacerViews[index + 1]
                 
-                rightSpacerView.snp.remakeConstraints { make in
-                    make.centerY.equalToSuperview()
-                    make.width.equalTo(leftSpacerView.snp.width)
-                    make.height.equalTo(leftSpacerView.snp.height)
-                    
-                    make.left.equalTo(punchView.snp.right)
-                    make.right.equalTo(rewardView.snp.left)
-                }
+                rightSpacerView.removeAllConstraints()
+                rightSpacerView.makeAttributeEqualToSuperview(.centerY)
+                rightSpacerView.makeAttribute(.width, equalToOtherView: leftSpacerView, attribute: .width)
+                rightSpacerView.makeAttribute(.height, equalToOtherView: leftSpacerView, attribute: .height)
+                
+                rightSpacerView.makeAttribute(.left, equalToOtherView: punchView, attribute: .right)
+                rightSpacerView.makeAttribute(.right, equalToOtherView: rewardView, attribute: .left)
             }
             
             // snp.make, not snp.remake, since we don't want to blow away its
