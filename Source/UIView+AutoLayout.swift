@@ -70,6 +70,8 @@ extension UIView {
             return
         }
         
+        translatesAutoresizingMaskIntoConstraints = false
+
         superview.addConstraint(NSLayoutConstraint(item: self,
                                                    attribute: attribute,
                                                    relatedBy: .equal,
@@ -84,6 +86,8 @@ extension UIView {
             return
         }
         
+        translatesAutoresizingMaskIntoConstraints = false
+
         superview.addConstraint(NSLayoutConstraint(item: self,
                                                    attribute: attribute,
                                                    relatedBy: .equal,
