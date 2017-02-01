@@ -62,6 +62,54 @@ extension UIView {
                                                       metrics: metrics,
                                                       views: views))
     }
+    
+    // MARK: Attributes
+
+    func makeAttributeEqualToSuperview(attribute: NSLayoutAttribute, offset: CGFloat = 0) {
+        guard let superview = superview else {
+            return
+        }
+        
+        superview.addConstraint(NSLayoutConstraint(item: self,
+                                                   attribute: attribute,
+                                                   relatedBy: .equal,
+                                                   toItem: superview,
+                                                   attribute: attribute,
+                                                   multiplier: 1.0,
+                                                   constant: offset))
+    }
+    
+    func makeAttribute(attribute: NSLayoutAttribute, equalTo constant: CGFloat) {
+        guard let superview = superview else {
+            return
+        }
+        
+        superview.addConstraint(NSLayoutConstraint(item: self,
+                                                   attribute: attribute,
+                                                   relatedBy: .equal,
+                                                   toItem: nil,
+                                                   attribute: .notAnAttribute,
+                                                   multiplier: 1.0,
+                                                   constant: constant))
+    }
+    
+    func makeAttribute(attribute: NSLayoutAttribute, equalToOtherView otherView: UIView, otherAttribute: NSLayoutAttribute, constant: CGFloat = 0) {
+        guard let sv = otherView.superview,
+            sv == self.superview else {
+                return
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        sv.addConstraint(NSLayoutConstraint(item: self,
+                                            attribute: attribute,
+                                            relatedBy: .equal,
+                                            toItem: otherView,
+                                            attribute: otherAttribute,
+                                            multiplier: 1.0,
+                                            constant: constant))
+    }
+
     /**
      Removes all the constrains where the receiver is either the
      firstItem or secondItem.
