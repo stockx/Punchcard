@@ -167,8 +167,7 @@ public class PunchcardView: UIView {
                 rightSpacerView.makeAttribute(.right, equalToOtherView: rewardView, attribute: .left)
             }
             
-            // snp.make, not snp.remake, since we don't want to blow away its
-            // existing constraints.
+            // Don't want to blow away the existing constraints since we just set some.
             punchView.makeAttributeEqualToSuperview(.centerY)
         }
         
