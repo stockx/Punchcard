@@ -65,20 +65,26 @@ extension UIView {
     
     // MARK: Attributes
 
-    func makeAttributeEqualToSuperview(_ attribute: NSLayoutAttribute, offset: CGFloat = 0) {
+    func makeAttributesEqualToSuperview(_ attributes: [NSLayoutAttribute], offset: CGFloat = 0) {
         guard let superview = superview else {
             return
         }
         
         translatesAutoresizingMaskIntoConstraints = false
-
-        superview.addConstraint(NSLayoutConstraint(item: self,
-                                                   attribute: attribute,
-                                                   relatedBy: .equal,
-                                                   toItem: superview,
-                                                   attribute: attribute,
-                                                   multiplier: 1.0,
-                                                   constant: offset))
+        
+        attributes.forEach {
+            superview.addConstraint(NSLayoutConstraint(item: self,
+                                                       attribute: $0,
+                                                       relatedBy: .equal,
+                                                       toItem: superview,
+                                                       attribute: $0,
+                                                       multiplier: 1.0,
+                                                       constant: offset))
+        }
+    }
+    
+    func makeAttributeEqualToSuperview(_ attribute: NSLayoutAttribute, offset: CGFloat = 0) {
+        makeAttributesEqualToSuperview([attribute], offset: offset)
     }
     
     func makeAttribute(_ attribute: NSLayoutAttribute, equalTo constant: CGFloat) {
