@@ -10,5 +10,4 @@ Pod::Spec.new do |s|
   s.platform           = :ios, "8.2"
   s.source             = { :git => "https://github.com/stockx/Punchcard.git", :tag => s.version}
   s.source_files       = "Source/**/*.swift"
-  s.dependency           "SnapKit"
 end
