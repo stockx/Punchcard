@@ -17,6 +17,8 @@ extension UIView {
      both `firstView` and `secondView` must already be subviews of `self`.
      */
     func makeEdgesOf(_ firstView: UIView, equalTo secondView: UIView) {
+        firstView.translatesAutoresizingMaskIntoConstraints = false
+
         [.top, .bottom, .leading, .trailing].forEach {
             addConstraint(NSLayoutConstraint(item: firstView,
                                              attribute: $0,
