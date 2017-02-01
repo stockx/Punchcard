@@ -90,9 +90,7 @@ public class PunchcardView: UIView {
         punchesContentView.layer.borderWidth = 1.0
         addSubview(punchesContentView)
         
-        punchesContentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(5)
-        }
+        punchesContentView.makeEdgesEqualToSuperview(inset: 5)
 
         layoutIfNeeded()
     }
