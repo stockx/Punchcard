@@ -37,6 +37,10 @@ extension UIView {
     
     // MARK: Attributes
 
+    /**
+     Applies constraints to the receiver with attributes `attributes` all
+     equal to its superview.
+     */
     func makeAttributesEqualToSuperview(_ attributes: [NSLayoutAttribute], offset: CGFloat = 0) {
         guard let superview = superview else {
             return
@@ -55,6 +59,10 @@ extension UIView {
         }
     }
 
+    /**
+     Applies a constraint to the receiver with attribute `attribute` and
+     the specified constant.
+     */
     func makeAttribute(_ attribute: NSLayoutAttribute, equalTo constant: CGFloat) {
         guard let superview = superview else {
             return
@@ -71,7 +79,14 @@ extension UIView {
                                                    constant: constant))
     }
     
-    func makeAttribute(_ attribute: NSLayoutAttribute, equalToOtherView otherView: UIView, attribute otherAttribute: NSLayoutAttribute, constant: CGFloat = 0) {
+    /**
+     Applies a constraint with the attribute `attribute` from the receiver to
+     the view `otherView` with attribute `attribute`.
+     */
+    func makeAttribute(_ attribute: NSLayoutAttribute,
+                       equalToOtherView otherView: UIView,
+                       attribute otherAttribute: NSLayoutAttribute,
+                       constant: CGFloat = 0) {
         guard let sv = otherView.superview,
             sv == self.superview else {
                 return
