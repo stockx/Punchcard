@@ -126,9 +126,9 @@ public class PunchcardView: UIView {
                 let firstSpacerView = spacerViews[index]
                 
                 firstSpacerView.removeAllConstraints()
-                firstSpacerView.makeAttributeEqualToSuperview(.left)
+                firstSpacerView.makeAttributeEqualToSuperview(.leading)
                 firstSpacerView.makeAttribute(.height, equalTo: 0)
-                firstSpacerView.makeAttribute(.right, equalToOtherView: punchView, attribute: .left)
+                firstSpacerView.makeAttribute(.trailing, equalToOtherView: punchView, attribute: .leading)
                 firstSpacerView.makeAttributeEqualToSuperview(.centerY)
             }
             
@@ -145,8 +145,8 @@ public class PunchcardView: UIView {
                 leftSpacerView.makeAttribute(.width, equalToOtherView: previousSpacerView, attribute: .width)
                 leftSpacerView.makeAttributeEqualToSuperview(.centerY)
                 
-                leftSpacerView.makeAttribute(.left, equalToOtherView: previousPunchView, attribute: .right)
-                leftSpacerView.makeAttribute(.right, equalToOtherView: punchView, attribute: .left)
+                leftSpacerView.makeAttribute(.leading, equalToOtherView: previousPunchView, attribute: .trailing)
+                leftSpacerView.makeAttribute(.trailing, equalToOtherView: punchView, attribute: .leading)
             }
             
             // If it's the last one, anchor the right spacer view to the right of
@@ -160,8 +160,8 @@ public class PunchcardView: UIView {
                 rightSpacerView.makeAttribute(.width, equalToOtherView: leftSpacerView, attribute: .width)
                 rightSpacerView.makeAttribute(.height, equalToOtherView: leftSpacerView, attribute: .height)
                 
-                rightSpacerView.makeAttribute(.left, equalToOtherView: punchView, attribute: .right)
-                rightSpacerView.makeAttribute(.right, equalToOtherView: rewardView, attribute: .left)
+                rightSpacerView.makeAttribute(.leading, equalToOtherView: punchView, attribute: .trailing)
+                rightSpacerView.makeAttribute(.trailing, equalToOtherView: rewardView, attribute: .leading)
             }
             
             // Don't want to blow away the existing constraints since we just set some.
@@ -177,8 +177,8 @@ public class PunchcardView: UIView {
             let firstSpacerView = spacerViews.first {
             lastSpacerView.removeAllConstraints()
             lastSpacerView.makeAttributeEqualToSuperview(.centerY)
-            lastSpacerView.makeAttribute(.left, equalToOtherView: rewardView, attribute: .right)
-            lastSpacerView.makeAttributeEqualToSuperview(.right)
+            lastSpacerView.makeAttribute(.leading, equalToOtherView: rewardView, attribute: .trailing)
+            lastSpacerView.makeAttributeEqualToSuperview(.trailing)
             
             lastSpacerView.makeAttribute(.width, equalToOtherView: firstSpacerView, attribute: .width)
             lastSpacerView.makeAttribute(.height, equalToOtherView: firstSpacerView, attribute: .height)
