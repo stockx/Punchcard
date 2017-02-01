@@ -62,4 +62,23 @@ extension UIView {
                                                       metrics: metrics,
                                                       views: views))
     }
+    /**
+     Removes all the constrains where the receiver is either the
+     firstItem or secondItem.
+     
+     If the receiver does not have a superview, this only removes the
+     constraints that the receiver owns.
+     */
+    func removeAllConstraints() {
+        guard let superview = superview else {
+            removeConstraints(constraints)
+            return
+        }
+        
+        for constraint in superview.constraints where (constraint.firstItem as? NSObject == self || constraint.secondItem as? NSObject == self) {
+            superview.removeConstraint(constraint)
+        }
+        
+        removeConstraints(constraints)
+    }
 }
