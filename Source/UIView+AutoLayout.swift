@@ -39,8 +39,9 @@ extension UIView {
     
     /**
      Makes the edges of the receiver equal to its superview with an otion to
-     specify an inset value. If the receiver does not have a superview, this does
-     nothing.
+     specify an inset value.
+     
+     If the receiver does not have a superview, this does nothing.
      */
     func makeEdgesEqualToSuperview(inset: CGFloat = 0) {
         guard let superview = superview else {
