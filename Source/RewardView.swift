@@ -59,7 +59,7 @@ class RewardView: UIView {
         
         addSubview(label)
         
-        makeEdgesEqualToSuperview(label, inset: self.borderBuffer)
+        label.makeEdgesEqualToSuperview(inset: self.borderBuffer)
         
         label.numberOfLines = 0
         label.textAlignment = .center

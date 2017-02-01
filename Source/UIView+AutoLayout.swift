@@ -31,22 +31,25 @@ extension UIView {
     }
     
     /**
-     Makes the edges of `view` equal to its superview with an otion to
-     specify an inset value.
-     
-     Note: `view` must already be a subview of `self`.
+     Makes the edges of the receiver equal to its superview with an otion to
+     specify an inset value. If the receiver does not have a superview, this does
+     nothing.
      */
-    func makeEdgesEqualToSuperview(_ view: UIView, inset: CGFloat = 0) {
-        view.translatesAutoresizingMaskIntoConstraints = false
+    func makeEdgesEqualToSuperview(inset: CGFloat = 0) {
+        guard let superview = superview else {
+            return
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
 
-        let views = ["view": view]
+        let views = ["view": self]
         let metrics = ["inset": inset]
 
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-inset-[view]-inset-|",
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-inset-[view]-inset-|",
                                                       options: [],
                                                       metrics: metrics,
                                                       views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-inset-[view]-inset-|",
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-inset-[view]-inset-|",
                                                       options: [],
                                                       metrics: metrics,
                                                       views: views))
