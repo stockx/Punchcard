@@ -41,27 +41,14 @@ class PunchView: UIView {
         addSubview(filledPunchImageView)
         addSubview(punchNumberLabel)
         
-        let views: [String : UIView] = ["emptyPunchImageView": emptyPunchImageView,
-                     "punchNumberLabel": punchNumberLabel,
-                     "filledPunchImageView": filledPunchImageView]
-        
-        for (_, view) in views {
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[emptyPunchImageView]|",
-                                                      options: [],
-                                                      metrics: nil,
-                                                      views: views))
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[emptyPunchImageView][punchNumberLabel]|",
-                                                      options: [.alignAllLeading, .alignAllTrailing],
-                                                      metrics: nil,
-                                                      views: views))
-
-        
         punchNumberLabel.textAlignment = .center
         
+        emptyPunchImageView.makeAttributesEqualToSuperview([.leading, .trailing, .top])
+        punchNumberLabel.makeAttribute(.top, equalToOtherView: emptyPunchImageView, attribute: .bottom)
+        punchNumberLabel.makeAttribute(.leading, equalToOtherView: emptyPunchImageView, attribute: .leading)
+        punchNumberLabel.makeAttribute(.trailing, equalToOtherView: emptyPunchImageView, attribute: .trailing)
+
+        punchNumberLabel.makeAttributesEqualToSuperview([.bottom])
         filledPunchImageView.makeEdgesEqualTo(emptyPunchImageView)
 
         // Apply a transom translation and rotation to the filledPunchImageView
