@@ -10,6 +10,8 @@ import UIKit
 
 extension UIView {
 
+    // MARK: Edges
+
     /**
      Makes the edges of the receiver equal to the edges of `view`.
      
