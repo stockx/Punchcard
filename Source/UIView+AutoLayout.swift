@@ -123,7 +123,7 @@ extension UIView {
             return
         }
         
-        for constraint in superview.constraints where (constraint.firstItem as? NSObject == self || constraint.secondItem as? NSObject == self) {
+        for constraint in superview.constraints where (constraint.firstItem as? UIView == self || constraint.secondItem as? UIView == self) {
             superview.removeConstraint(constraint)
         }
         
