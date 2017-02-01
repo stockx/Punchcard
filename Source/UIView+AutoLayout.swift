@@ -11,19 +11,24 @@ import UIKit
 extension UIView {
 
     /**
-     Makes the edges of `firstView` equal to the edges of `secondView`.
+     Makes the edges of the receiver equal to the edges of `view`.
      
-     Note: `secondView` must already be constrained on `self`, and
-     both `firstView` and `secondView` must already be subviews of `self`.
+     Note: `view` must already be constrained, and both the receiver
+     and `view` must have a common superview.
      */
-    func makeEdgesOf(_ firstView: UIView, equalTo secondView: UIView) {
-        firstView.translatesAutoresizingMaskIntoConstraints = false
+    func makeEdgesEqualTo(_ view: UIView) {
+        guard let sv = view.superview,
+            sv == self.superview else {
+                return
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
 
         [.top, .bottom, .leading, .trailing].forEach {
-            addConstraint(NSLayoutConstraint(item: firstView,
+            sv.addConstraint(NSLayoutConstraint(item: self,
                                              attribute: $0,
                                              relatedBy: .equal,
-                                             toItem: secondView,
+                                             toItem: view,
                                              attribute: $0,
                                              multiplier: 1.0,
                                              constant: 0.0))
