@@ -32,7 +32,8 @@ extension UIView {
      If the receiver does not have a superview, this does nothing.
      */
     func makeEdgesEqualToSuperview(inset: CGFloat = 0) {
-        makeAttributesEqualToSuperview([.leading, .trailing, .top, .bottom])
+        makeAttributesEqualToSuperview([.leading, .top], offset: inset)
+        makeAttributesEqualToSuperview([.trailing, .bottom], offset: -inset)
     }
     
     // MARK: Attributes
