@@ -172,12 +172,10 @@ public class PunchcardView: UIView {
             punchView.makeAttributeEqualToSuperview(.centerY)
         }
         
-        rewardView.snp.remakeConstraints { make in
-            make.centerY.equalToSuperview()
-
-            make.width.equalTo(self.state.rewardViewSize.width)
-            make.height.equalTo(self.state.rewardViewSize.height)
-        }
+        rewardView.makeAttributeEqualToSuperview(.centerY)
+        
+        rewardView.makeAttribute(.width, equalTo: state.rewardViewSize.width)
+        rewardView.makeAttribute(.height, equalTo: state.rewardViewSize.height)
         
         if let lastSpacerView = spacerViews.last,
             let firstSpacerView = spacerViews.first {
