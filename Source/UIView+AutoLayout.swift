@@ -19,22 +19,10 @@ extension UIView {
      and `view` must have a common superview.
      */
     func makeEdgesEqualTo(_ view: UIView) {
-        guard let sv = view.superview,
-            sv == self.superview else {
-                return
-        }
-        
-        translatesAutoresizingMaskIntoConstraints = false
-
-        [.top, .bottom, .leading, .trailing].forEach {
-            sv.addConstraint(NSLayoutConstraint(item: self,
-                                             attribute: $0,
-                                             relatedBy: .equal,
-                                             toItem: view,
-                                             attribute: $0,
-                                             multiplier: 1.0,
-                                             constant: 0.0))
-        }
+        makeAttribute(.leading, equalToOtherView: view, attribute: .leading)
+        makeAttribute(.trailing, equalToOtherView: view, attribute: .trailing)
+        makeAttribute(.top, equalToOtherView: view, attribute: .top)
+        makeAttribute(.bottom, equalToOtherView: view, attribute: .bottom)
     }
     
     /**
@@ -44,23 +32,7 @@ extension UIView {
      If the receiver does not have a superview, this does nothing.
      */
     func makeEdgesEqualToSuperview(inset: CGFloat = 0) {
-        guard let superview = superview else {
-            return
-        }
-        
-        translatesAutoresizingMaskIntoConstraints = false
-
-        let views = ["view": self]
-        let metrics = ["inset": inset]
-
-        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-inset-[view]-inset-|",
-                                                      options: [],
-                                                      metrics: metrics,
-                                                      views: views))
-        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-inset-[view]-inset-|",
-                                                      options: [],
-                                                      metrics: metrics,
-                                                      views: views))
+        makeAttributesEqualToSuperview([.leading, .trailing, .top, .bottom])
     }
     
     // MARK: Attributes
@@ -115,6 +87,9 @@ extension UIView {
                                             multiplier: 1.0,
                                             constant: constant))
     }
+
+    
+    // MARK: Utility
 
     /**
      Removes all the constrains where the receiver is either the
