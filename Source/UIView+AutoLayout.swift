@@ -82,11 +82,7 @@ extension UIView {
                                                        constant: offset))
         }
     }
-    
-    func makeAttributeEqualToSuperview(_ attribute: NSLayoutAttribute, offset: CGFloat = 0) {
-        makeAttributesEqualToSuperview([attribute], offset: offset)
-    }
-    
+
     func makeAttribute(_ attribute: NSLayoutAttribute, equalTo constant: CGFloat) {
         guard let superview = superview else {
             return
