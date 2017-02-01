@@ -169,10 +169,7 @@ public class PunchcardView: UIView {
             
             // snp.make, not snp.remake, since we don't want to blow away its
             // existing constraints.
-            punchView.snp.makeConstraints { make in
-                make.centerY.equalToSuperview()
-            }
-            
+            punchView.makeAttributeEqualToSuperview(.centerY)
         }
         
         rewardView.snp.remakeConstraints { make in
