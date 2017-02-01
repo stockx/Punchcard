@@ -8,9 +8,6 @@
 
 import UIKit
 
-// Libs
-import SnapKit
-
 public class PunchcardView: UIView {
     
     public struct State {
@@ -90,9 +87,7 @@ public class PunchcardView: UIView {
         punchesContentView.layer.borderWidth = 1.0
         addSubview(punchesContentView)
         
-        punchesContentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(5)
-        }
+        punchesContentView.makeEdgesEqualToSuperview(inset: 5)
 
         layoutIfNeeded()
     }
@@ -129,12 +124,11 @@ public class PunchcardView: UIView {
             // it to the left and the right of the first punch view.
             if index == 0 {
                 let firstSpacerView = spacerViews[index]
-                firstSpacerView.snp.remakeConstraints { make in
-                    make.left.equalToSuperview()
-                    make.height.equalTo(0)
-                    make.right.equalTo(punchView.snp.left)
-                    make.centerY.equalToSuperview()
-                }
+                
+                firstSpacerView.removeAllConstraints()
+                firstSpacerView.makeAttributesEqualToSuperview([.leading, .centerY])
+                firstSpacerView.makeAttribute(.height, equalTo: 0)
+                firstSpacerView.makeAttribute(.trailing, equalToOtherView: punchView, attribute: .leading)
             }
             
             // If it's somewhere in the middle of the end, anchor the left spacer
@@ -145,14 +139,13 @@ public class PunchcardView: UIView {
                 let previousSpacerView = spacerViews[index - 1]
                 let previousPunchView = punchViews[index - 1]
                 
-                leftSpacerView.snp.remakeConstraints { make in
-                    make.height.equalTo(previousSpacerView.snp.height)
-                    make.width.equalTo(previousSpacerView.snp.width)
-                    make.centerY.equalToSuperview()
-                    
-                    make.left.equalTo(previousPunchView.snp.right)
-                    make.right.equalTo(punchView.snp.left)
-                }
+                leftSpacerView.removeAllConstraints()
+                leftSpacerView.makeAttribute(.height, equalToOtherView: previousSpacerView, attribute: .height)
+                leftSpacerView.makeAttribute(.width, equalToOtherView: previousSpacerView, attribute: .width)
+                leftSpacerView.makeAttributesEqualToSuperview([.centerY])
+                
+                leftSpacerView.makeAttribute(.leading, equalToOtherView: previousPunchView, attribute: .trailing)
+                leftSpacerView.makeAttribute(.trailing, equalToOtherView: punchView, attribute: .leading)
             }
             
             // If it's the last one, anchor the right spacer view to the right of
@@ -161,41 +154,32 @@ public class PunchcardView: UIView {
                 let leftSpacerView = spacerViews[index]
                 let rightSpacerView = spacerViews[index + 1]
                 
-                rightSpacerView.snp.remakeConstraints { make in
-                    make.centerY.equalToSuperview()
-                    make.width.equalTo(leftSpacerView.snp.width)
-                    make.height.equalTo(leftSpacerView.snp.height)
-                    
-                    make.left.equalTo(punchView.snp.right)
-                    make.right.equalTo(rewardView.snp.left)
-                }
+                rightSpacerView.removeAllConstraints()
+                rightSpacerView.makeAttributesEqualToSuperview([.centerY])
+                rightSpacerView.makeAttribute(.width, equalToOtherView: leftSpacerView, attribute: .width)
+                rightSpacerView.makeAttribute(.height, equalToOtherView: leftSpacerView, attribute: .height)
+                
+                rightSpacerView.makeAttribute(.leading, equalToOtherView: punchView, attribute: .trailing)
+                rightSpacerView.makeAttribute(.trailing, equalToOtherView: rewardView, attribute: .leading)
             }
             
-            // snp.make, not snp.remake, since we don't want to blow away its
-            // existing constraints.
-            punchView.snp.makeConstraints { make in
-                make.centerY.equalToSuperview()
-            }
-            
+            // Don't want to blow away the existing constraints since we just set some.
+            punchView.makeAttributesEqualToSuperview([.centerY])
         }
         
-        rewardView.snp.remakeConstraints { make in
-            make.centerY.equalToSuperview()
-
-            make.width.equalTo(self.state.rewardViewSize.width)
-            make.height.equalTo(self.state.rewardViewSize.height)
-        }
+        rewardView.makeAttributesEqualToSuperview([.centerY])
+        
+        rewardView.makeAttribute(.width, equalTo: state.rewardViewSize.width)
+        rewardView.makeAttribute(.height, equalTo: state.rewardViewSize.height)
         
         if let lastSpacerView = spacerViews.last,
             let firstSpacerView = spacerViews.first {
-            lastSpacerView.snp.remakeConstraints { make in
-                make.centerY.equalToSuperview()
-                make.left.equalTo(rewardView.snp.right)
-                make.right.equalToSuperview()
-                
-                make.width.equalTo(firstSpacerView.snp.width)
-                make.height.equalTo(firstSpacerView.snp.height)
-            }
+            lastSpacerView.removeAllConstraints()
+            lastSpacerView.makeAttributesEqualToSuperview([.centerY, .trailing])
+            lastSpacerView.makeAttribute(.leading, equalToOtherView: rewardView, attribute: .trailing)
+            
+            lastSpacerView.makeAttribute(.width, equalToOtherView: firstSpacerView, attribute: .width)
+            lastSpacerView.makeAttribute(.height, equalToOtherView: firstSpacerView, attribute: .height)
         }
         
         super.updateConstraints()

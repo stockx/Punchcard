@@ -8,9 +8,6 @@
 
 import UIKit
 
-// Libs
-import SnapKit
-
 class PunchView: UIView {
     
     struct State {
@@ -44,24 +41,15 @@ class PunchView: UIView {
         addSubview(filledPunchImageView)
         addSubview(punchNumberLabel)
         
-        emptyPunchImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-        }
-        
         punchNumberLabel.textAlignment = .center
         
-        punchNumberLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyPunchImageView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
-        filledPunchImageView.snp.makeConstraints { make in
-            make.edges.equalTo(self.emptyPunchImageView)
-        }
+        emptyPunchImageView.makeAttributesEqualToSuperview([.leading, .trailing, .top])
+        punchNumberLabel.makeAttribute(.top, equalToOtherView: emptyPunchImageView, attribute: .bottom)
+        punchNumberLabel.makeAttribute(.leading, equalToOtherView: emptyPunchImageView, attribute: .leading)
+        punchNumberLabel.makeAttribute(.trailing, equalToOtherView: emptyPunchImageView, attribute: .trailing)
+
+        punchNumberLabel.makeAttributesEqualToSuperview([.bottom])
+        filledPunchImageView.makeEdgesEqualTo(emptyPunchImageView)
 
         // Apply a transom translation and rotation to the filledPunchImageView
         let randomRotationValue = randomBetweenNumbers(0, secondNum: 0.1) * (arc4random_uniform(100) % 2 == 0 ? 1.0 : -1.0)

@@ -8,9 +8,6 @@
 
 import UIKit
 
-// Libs
-import SnapKit
-
 /**
  Represents the last item on the Punchcard.
  
@@ -61,9 +58,8 @@ class RewardView: UIView {
         layer.borderWidth = 1
         
         addSubview(label)
-        label.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(self.borderBuffer)
-        }
+        
+        label.makeEdgesEqualToSuperview(inset: self.borderBuffer)
         
         label.numberOfLines = 0
         label.textAlignment = .center
