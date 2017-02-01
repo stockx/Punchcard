@@ -127,12 +127,12 @@ public class PunchcardView: UIView {
             // it to the left and the right of the first punch view.
             if index == 0 {
                 let firstSpacerView = spacerViews[index]
-                firstSpacerView.snp.remakeConstraints { make in
-                    make.left.equalToSuperview()
-                    make.height.equalTo(0)
-                    make.right.equalTo(punchView.snp.left)
-                    make.centerY.equalToSuperview()
-                }
+                
+                firstSpacerView.removeAllConstraints()
+                firstSpacerView.makeAttributeEqualToSuperview(.left)
+                firstSpacerView.makeAttribute(.height, equalTo: 0)
+                firstSpacerView.makeAttribute(.right, equalToOtherView: punchView, attribute: .left)
+                firstSpacerView.makeAttributeEqualToSuperview(.centerY)
             }
             
             // If it's somewhere in the middle of the end, anchor the left spacer
