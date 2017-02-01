@@ -65,7 +65,7 @@ extension UIView {
     
     // MARK: Attributes
 
-    func makeAttributeEqualToSuperview(attribute: NSLayoutAttribute, offset: CGFloat = 0) {
+    func makeAttributeEqualToSuperview(_ attribute: NSLayoutAttribute, offset: CGFloat = 0) {
         guard let superview = superview else {
             return
         }
