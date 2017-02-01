@@ -8,9 +8,6 @@
 
 import UIKit
 
-// Libs
-import SnapKit
-
 class PunchView: UIView {
     
     struct State {
@@ -44,23 +41,35 @@ class PunchView: UIView {
         addSubview(filledPunchImageView)
         addSubview(punchNumberLabel)
         
-        emptyPunchImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+        let views: [String : UIView] = ["emptyPunchImageView": emptyPunchImageView,
+                     "punchNumberLabel": punchNumberLabel,
+                     "filledPunchImageView": filledPunchImageView]
+        
+        for (_, view) in views {
+            view.translatesAutoresizingMaskIntoConstraints = false
         }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[emptyPunchImageView]|",
+                                                      options: [],
+                                                      metrics: nil,
+                                                      views: views))
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[emptyPunchImageView][punchNumberLabel]|",
+                                                      options: [.alignAllLeading, .alignAllTrailing],
+                                                      metrics: nil,
+                                                      views: views))
+
         
         punchNumberLabel.textAlignment = .center
         
-        punchNumberLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyPunchImageView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
-        filledPunchImageView.snp.makeConstraints { make in
-            make.edges.equalTo(self.emptyPunchImageView)
+        [.top, .bottom, .leading, .trailing].forEach {
+            addConstraint(NSLayoutConstraint(item: filledPunchImageView,
+                                             attribute: $0,
+                                             relatedBy: .equal,
+                                             toItem: emptyPunchImageView,
+                                             attribute: $0,
+                                             multiplier: 1.0,
+                                             constant: 0.0))
         }
 
         // Apply a transom translation and rotation to the filledPunchImageView
