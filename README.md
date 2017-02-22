@@ -104,7 +104,7 @@ punchcardView.state = state
 <a name="license"> License </a>
 --------------
 
-`BubbleRankingIndicator` is developed by [Josh Sklar](https://www.linkedin.com/in/jrmsklar) at [StockX](https://stockx.com) and is released under the MIT license. See the `LICENSE` file for details.
+`Punchcard` is developed by [Josh Sklar](https://www.linkedin.com/in/jrmsklar) at [StockX](https://stockx.com) and is released under the MIT license. See the `LICENSE` file for details.
 
 <a name="contact"> Contact </a>
 --------------
