@@ -22,7 +22,8 @@ In this screenshot the user has achieved 2 out of 5 punches, and the images used
 6. [License](#license)
 7. [Contact](#contact)
 
-##<a name="features"> Features </a>
+<a name="features"> Features </a>
+--------------
 
 - [x] Supports AutoLayout.
 - [x] Applies a random transform (translation and rotation) to the punches to simulate a real-life stamp.
