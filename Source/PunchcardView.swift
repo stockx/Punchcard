@@ -101,7 +101,7 @@ public class PunchcardView: UIView {
         }
         
         // Calculate if the PunchcardView has enough size to accommodate all punchViews.
-        let punchNumberLabelHeight = NSString(string: "1").size(attributes: [NSFontAttributeName: state.punchNumberFont]).height
+        let punchNumberLabelHeight = NSString(string: "1").size(withAttributes: [.font: state.punchNumberFont]).height
         let punchViewSize = CGSize(width: emptyPunchImage.size.width,
                                    height: emptyPunchImage.size.height + punchNumberLabelHeight)
         
