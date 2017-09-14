@@ -1,6 +1,6 @@
 ![punchcard logo](https://cloud.githubusercontent.com/assets/879038/21446438/06168ac8-c894-11e6-87e3-8ad1e5498589.png)
 
-![Swift3](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat")
+![Swift4](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat")
 [![Platform](https://img.shields.io/cocoapods/p/Punchcard.svg?style=flat)](http://cocoapods.org/pods/Punchcard)
 [![Version](https://img.shields.io/cocoapods/v/Punchcard.svg?style=flat)](http://cocoapods.org/pods/Punchcard)
 [![License](https://img.shields.io/cocoapods/l/Punchcard.svg?style=flat)](http://cocoapods.org/pods/Punchcard)
@@ -49,6 +49,8 @@ To integrate `Punchcard` into your Xcode project using CocoaPods, specify it in 
 ```ruby
 pod 'Punchcard'
 ```
+
+(for Swift 3, use `pod 'Punchcard', '~> 0.4'` instead)
 
 Then, run the following command:
 
